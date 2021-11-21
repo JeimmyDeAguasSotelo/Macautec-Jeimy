@@ -13,6 +13,10 @@ import CrearUsuario from "./components/crear-usuario.component";
 import EditarUsuario from "./components/editar-usuario.component";
 import ListaUsuarios from "./components/lista-usuarios.component";
 
+import CrearServicio from "./components/crear-servicio.component";
+import EditarServicio from "./components/editar-servicio.component";
+import ListaServicio from "./components/lista-servicios.component";
+
 function App() {
   return (<Router>
     <div className="App">
@@ -21,7 +25,7 @@ function App() {
           <Container>
 
             <Navbar.Brand>
-              <Link to={"/crear-usuario"} className="nav-link">
+              <Link to={"/"} className="nav-link">
                 Macautec
               </Link>
             </Navbar.Brand>
@@ -32,16 +36,19 @@ function App() {
                   Crear Usario
                 </Link>
               </Nav>
-
-              {/* <Nav>
-                <Link to={"/edit-student/:id"} className="nav-link">
-                  Edit Student
-                </Link>
-              </Nav> */}
-
               <Nav>
                 <Link to={"/usuarios"} className="nav-link">
                   Lista Usuarios
+                </Link>
+              </Nav>
+              <Nav>
+                <Link to={"/crear-servicio"} className="nav-link">
+                  Crear Servicio
+                </Link>
+              </Nav>
+              <Nav>
+                <Link to={"/servicios"} className="nav-link">
+                  Lista Servicios
                 </Link>
               </Nav>
             </Nav>
@@ -59,6 +66,9 @@ function App() {
                 <Route path="/crear-usuario/" component={CrearUsuario} />
                 <Route path="/editar-usuario/:id" component={EditarUsuario} />
                 <Route path="/usuarios/" component={ListaUsuarios} />
+                <Route path="/crear-servicio/" component={CrearServicio} />
+                <Route path="/editar-servicio/:id" component={EditarServicio} />
+                <Route path="/servicios/" component={ListaServicio} />
               </Switch>
             </div>
           </Col>
