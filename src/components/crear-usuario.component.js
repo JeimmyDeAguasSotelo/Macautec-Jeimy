@@ -59,17 +59,17 @@ export default class CrearUsuario extends Component {
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="Nombre">
-          <Form.Label>Nombre</Form.Label>
+          <Form.Label><strong>Nombre</strong></Form.Label>
           <Form.Control type="text" value={this.state.nombre} onChange={this.onChangeNombreUsuario} />
         </Form.Group>
 
         <Form.Group controlId="Email">
-          <Form.Label>Email</Form.Label>
+          <Form.Label><strong>Email</strong></Form.Label>
           <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmailUsuario} />
         </Form.Group>
 
         <Form.Group controlId="Tipo">
-          <Form.Label>Tipo</Form.Label>
+          <Form.Label><strong>Tipo</strong></Form.Label>
         </Form.Group>
 
         <div className="form-group">

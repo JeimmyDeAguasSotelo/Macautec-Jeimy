@@ -74,16 +74,30 @@ export default class CrearServicio extends Component {
   render() {
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
-        <Form.Group controlId="Nombre">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" value={this.state.nombre} onChange={this.onChangeNombreServicio} required/>
-        </Form.Group>
+        
+        <div className="form-group" >
+          <label>
+            <strong>Nombre</strong>
+            </label>
+            <br></br>
+              <select value={this.state.nombre} onChange={this.onChangeNombreServicio}>
+                <option value="Revisión de frenos">Revisión de frenos</option>
+                <option value="Pastillas">Pastillas</option>
+                <option value="Discos">Discos</option>
+                <option value="Suspensión">Suspensión</option>
+                <option value="Amortiguadores">Amortiguadores</option>
+                <option value="Cambio de aceite">Cambio de aceite</option>
+                <option value="Alineación">Alineación</option>
+                <option value="Rotación de llantas">Rotación de llantas</option>
+              </select>
+            
+          
+        </div>
 
         <Form.Group controlId="Estado">
-          <Form.Label>Estado</Form.Label>
-        </Form.Group>
-
-        <div className="form-group" >
+          <Form.Label><strong>Estado</strong></Form.Label>
+          <br></br>
+        
             <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
@@ -109,21 +123,22 @@ export default class CrearServicio extends Component {
               />
               <label className="form-check-label">No Disponible</label>
             </div>
-          </div>
+          
+        </Form.Group>
 
 
         <Form.Group controlId="Descripcion">
-          <Form.Label>Descripcion</Form.Label>
+          <Form.Label><strong>Descripcion</strong></Form.Label>
           <Form.Control type="text" value={this.state.descripcion} onChange={this.onChangeDescripcionServicio} required/>
         </Form.Group>
 
         <Form.Group controlId="Costo">
-          <Form.Label>Costo</Form.Label>
+          <Form.Label><strong>Costo</strong></Form.Label>
           <Form.Control type="number" value={this.state.costo} onChange={this.onChangeCostoServicio} required/>
         </Form.Group>
 
         <Form.Group controlId="Duracionhoras">
-          <Form.Label>Duracion horas</Form.Label>
+          <Form.Label><strong>Duracion horas</strong></Form.Label>
           <Form.Control type="number" value={this.state.duracionhoras} onChange={this.onChangeDuracionhorasServicio} required/>
         </Form.Group>
 
