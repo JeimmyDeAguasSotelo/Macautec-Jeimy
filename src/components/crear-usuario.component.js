@@ -46,11 +46,13 @@ export default class CrearUsuario extends Component {
     axios.post('http://localhost:4000/usuarios/crear-usuario', usuarioObject)
       .then(res => console.log(res.data));
       this.props.history.push('/usuarios');
+      window.location.reload();
     this.setState({
       nombre: '',
       email: '',
       tipo: ''
     });
+
   }
 
   render() {

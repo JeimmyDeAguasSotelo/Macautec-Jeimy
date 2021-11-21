@@ -60,6 +60,7 @@ export default class EditarUsuario extends Component {
       .then((res) => {
         console.log(res.data)
         console.log('Usuario editado con exito')
+        window.location.reload()
       }).catch((error) => {
         console.log(error)
       })
