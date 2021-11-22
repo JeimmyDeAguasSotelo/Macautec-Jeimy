@@ -158,7 +158,7 @@ export default class EditarServicio extends Component {
         </Form.Group>
 
         <Button variant="danger" size="lg" block="block" type="submit">
-          Crear Servicio
+          Editar Servicio
         </Button>
       </Form>
     </div>);

@@ -17,8 +17,13 @@ import CrearServicio from "./components/crear-servicio.component";
 import EditarServicio from "./components/editar-servicio.component";
 import ListaServicio from "./components/lista-servicios.component";
 
+import CrearCita from "./components/crear-cita.component";
+import EditarCita from "./components/editar-cita.component";
+import ListaCita from "./components/lista-cita.component";
+
+
 function App() {
-  return (<Router>
+  return (<Router>    
     <div className="App">
       <header className="App-header">
         <Navbar bg="dark" variant="dark">
@@ -33,7 +38,7 @@ function App() {
             <Nav className="justify-content-end">
               <Nav>
                 <Link to={"/crear-usuario"} className="nav-link">
-                  Crear Usario
+                  Crear Usuario
                 </Link>
               </Nav>
               <Nav>
@@ -51,6 +56,16 @@ function App() {
                   Lista Servicios
                 </Link>
               </Nav>
+              <Nav>
+                <Link to={"/crear-cita"} className="nav-link">
+                  Crear Cita
+                </Link>
+              </Nav>
+              <Nav>
+                <Link to={"/citas"} className="nav-link">
+                  Lista Citas
+                </Link>
+              </Nav>              
             </Nav>
 
           </Container>
@@ -69,6 +84,9 @@ function App() {
                 <Route path="/crear-servicio/" component={CrearServicio} />
                 <Route path="/editar-servicio/:id" component={EditarServicio} />
                 <Route path="/servicios/" component={ListaServicio} />
+                <Route path="/crear-cita/" component={CrearCita} />
+                <Route path="/editar-cita/:id" component={EditarCita} />
+                <Route path="/citas/" component={ListaCita} />
               </Switch>
             </div>
           </Col>

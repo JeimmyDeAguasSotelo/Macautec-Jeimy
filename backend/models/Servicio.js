@@ -15,7 +15,7 @@ let servicioSchema = new Schema({
     type: String
   },
   duracionhoras: {
-    type: String
+    type: Number
   }
 }, {
     collection: 'servicio'
