@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import Select from 'react-select'
 
 export default class CrearServicio extends Component {
 
@@ -22,6 +21,7 @@ export default class CrearServicio extends Component {
     this.state = {
       nombre: '',
       estado: '',
+      mecanico:'',
       descripcion: '',
       costo: '',
       duracionhoras: '',
@@ -33,13 +33,12 @@ export default class CrearServicio extends Component {
   componentDidMount() {
     axios.get('http://localhost:4000/usuarios/mecanicos').then(res => {
   
-      var data = res.data
-      var loopData = ''
+      var data = res.data      
       var i ;
       var mecs = []
       for(i=0; i < data.length; i++){
-        mecs.push({ value: data[i].id, label: data[i].nombre });
-        //loopData += `<li>${data[i].name}</li>`
+        mecs.push({ value: data[i]._id, label: data[i].nombre });
+        
       }
       this.setState({
         mecanicos: mecs
@@ -70,6 +69,7 @@ export default class CrearServicio extends Component {
 
   onChangeDuracionhorasServicio(e) {
     this.setState({ duracionhoras: e.target.value })
+    console.log(this.state)
   }
 
   onSubmit(e) {
@@ -87,7 +87,7 @@ export default class CrearServicio extends Component {
     axios.post('http://localhost:4000/servicios/crear-servicio', ServicioObject)
       .then(res => console.log(res.data));
       this.props.history.push('/servicios');
-      window.location.reload();
+      //window.location.reload();
     this.setState({
       nombre: '',
       estado: '',
@@ -101,9 +101,17 @@ export default class CrearServicio extends Component {
   }
 
   render() {
-    const MyComponent = () => (
-      <Select options={this.state.mecanicos} />
-    )
+
+    const { mecanicos } = this.state;
+
+    let mecsList = mecanicos.length > 0
+      && mecanicos.map((item, i) => {
+      return (
+        <option key={i} value={item.value}>{item.label}</option>
+      )
+    }, this);
+
+
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         
@@ -112,7 +120,8 @@ export default class CrearServicio extends Component {
             <strong>Nombre</strong>
             </label>
             <br></br>
-              <select value={this.state.nombre} onChange={this.onChangeNombreServicio}>
+              <select value={this.state.nombre} onChange={this.onChangeNombreServicio} required>
+                <option>Seleccione</option>
                 <option value="Revisión de frenos">Revisión de frenos</option>
                 <option value="Pastillas">Pastillas</option>
                 <option value="Discos">Discos</option>
@@ -121,9 +130,7 @@ export default class CrearServicio extends Component {
                 <option value="Cambio de aceite">Cambio de aceite</option>
                 <option value="Alineación">Alineación</option>
                 <option value="Rotación de llantas">Rotación de llantas</option>
-              </select>
-            
-          
+              </select>            
         </div>
 
         <Form.Group controlId="Estado">
@@ -158,10 +165,18 @@ export default class CrearServicio extends Component {
           
         </Form.Group>
 
-        <Form.Group controlId="Mecanico">
-          <Form.Label><strong>Mecanico</strong></Form.Label>
-          <MyComponent value={this.state.mecanico} onChange={this.onChangeMecanicoServicio} required />
-        </Form.Group>
+
+        <div className="form-group" >
+          <label>
+            <strong>Mecanico</strong>
+            </label>
+            <br></br>
+              <select className="form-select" value={this.state.mecanico} onChange={this.onChangeMecanicoServicio} required>
+                <option>Seleccione</option>
+                {mecsList}
+              </select>
+            
+        </div>
 
         <Form.Group controlId="Descripcion">
           <Form.Label><strong>Descripcion</strong></Form.Label>

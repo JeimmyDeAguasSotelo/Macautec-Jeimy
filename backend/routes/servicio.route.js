@@ -28,6 +28,17 @@ router.route('/').get((req, res) => {
   })
 })
 
+// Obtener todos los Servicios Activos
+router.route('/activos').get((req, res) => {
+  servicioSchema.find({ estado: 'Disponible' },(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // Obtener unico Servicio
 router.route('/editar-servicio/:id').get((req, res) => {
   servicioSchema.findById(req.params.id, (error, data) => {

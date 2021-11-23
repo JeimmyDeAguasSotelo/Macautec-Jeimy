@@ -20,7 +20,8 @@ export default class CrearCita extends Component {
       servicio: '',
       fecha: '',
       hora: '',
-      placavehiculo: ''      
+      placavehiculo: '',
+      servicios:[]
     }
   }
 
@@ -40,6 +41,23 @@ export default class CrearCita extends Component {
     this.setState({ placavehiculo: e.target.value })
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:4000/servicios/activos').then(res => {
+  
+      var data = res.data      
+      var i ;
+      var servs = []
+      for(i=0; i < data.length; i++){
+        servs.push({ value: data[i]._id, label: data[i].nombre });
+        
+      }
+      this.setState({
+        servicios: servs
+      });
+    });
+    
+  }
+
   onSubmit(e) {
     e.preventDefault()
     const CitaObject = {
@@ -53,7 +71,7 @@ export default class CrearCita extends Component {
     axios.post('http://localhost:4000/citas/crear-cita', CitaObject)
       .then(res => console.log(res.data));
       this.props.history.push('/citas');
-      window.location.reload();
+      //window.location.reload();
     this.setState({
       servicio: '',
       fecha: '',
@@ -64,6 +82,16 @@ export default class CrearCita extends Component {
   }
 
   render() {
+
+    const { servicios } = this.state;
+
+    let servsList = servicios.length > 0
+      && servicios.map((item, i) => {
+      return (
+        <option key={i} value={item.value}>{item.label}</option>
+      )
+    }, this);
+
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         
@@ -74,14 +102,7 @@ export default class CrearCita extends Component {
             <br></br>
               <select value={this.state.servicio} onChange={this.onChangeServicio} required>
                 <option value="">Seleccione</option>
-                <option value="Revisión de frenos">Revisión de frenos</option>
-                <option value="Pastillas">Pastillas</option>
-                <option value="Discos">Discos</option>
-                <option value="Suspensión">Suspensión</option>
-                <option value="Amortiguadores">Amortiguadores</option>
-                <option value="Cambio de aceite">Cambio de aceite</option>
-                <option value="Alineación">Alineación</option>
-                <option value="Rotación de llantas">Rotación de llantas</option>
+                {servsList}
               </select>
         </div>
 

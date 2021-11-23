@@ -26,6 +26,7 @@ export default class ServicioTableRow extends Component {
             <tr>
                 <td>{this.props.obj.nombre}</td>
                 <td>{this.props.obj.estado}</td>
+                <td>{this.props.obj.mecanico}</td>
                 <td>{this.props.obj.descripcion}</td>
                 <td>{this.props.obj.costo}</td>
                 <td>{this.props.obj.duracionhoras}</td>

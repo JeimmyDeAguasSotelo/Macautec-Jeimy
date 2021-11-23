@@ -9,7 +9,7 @@ let servicioSchema = new Schema({
     type: String
   },
   mecanico: {
-    type: Object
+    type: String
   },
   descripcion: {
     type: String

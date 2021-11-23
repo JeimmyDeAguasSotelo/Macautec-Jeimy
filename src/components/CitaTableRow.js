@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
 
 export default class CitaTableRow extends Component {
 
