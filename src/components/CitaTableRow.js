@@ -22,6 +22,9 @@ export default class CitaTableRow extends Component {
     }
 
     render() {
+
+        
+
         return (
             <tr>
                 <td>{this.props.obj.servicio}</td>

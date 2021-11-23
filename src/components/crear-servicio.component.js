@@ -21,7 +21,7 @@ export default class CrearServicio extends Component {
     this.state = {
       nombre: '',
       estado: '',
-      mecanico:'',
+      mecanico:{},
       descripcion: '',
       costo: '',
       duracionhoras: '',
@@ -56,7 +56,9 @@ export default class CrearServicio extends Component {
   }
 
   onChangeMecanicoServicio(e) {
-    this.setState({ mecanico: e.target.value })
+    let index = e.nativeEvent.target.selectedIndex;
+    let label = e.nativeEvent.target[index].text;
+    this.setState({ mecanico: {value: e.target.value, label:label} })
   }
 
   onChangeDescripcionServicio(e) {
@@ -69,7 +71,6 @@ export default class CrearServicio extends Component {
 
   onChangeDuracionhorasServicio(e) {
     this.setState({ duracionhoras: e.target.value })
-    console.log(this.state)
   }
 
   onSubmit(e) {
@@ -171,7 +172,7 @@ export default class CrearServicio extends Component {
             <strong>Mecanico</strong>
             </label>
             <br></br>
-              <select className="form-select" value={this.state.mecanico} onChange={this.onChangeMecanicoServicio} required>
+              <select className="form-select" value={this.state.mecanico.value} onChange={this.onChangeMecanicoServicio} required>
                 <option>Seleccione</option>
                 {mecsList}
               </select>
