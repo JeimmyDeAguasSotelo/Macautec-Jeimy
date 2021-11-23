@@ -8,6 +8,9 @@ let servicioSchema = new Schema({
   estado: {
     type: String
   },
+  mecanico: {
+    type: Object
+  },
   descripcion: {
     type: String
   },

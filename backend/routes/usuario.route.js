@@ -28,6 +28,17 @@ router.route('/').get((req, res) => {
   })
 })
 
+// Obtener todos los Usuarios
+router.route('/mecanicos').get((req, res) => {
+  usuarioSchema.find({ tipo: 'Mecanico' },(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // Obtener unico Usuario
 router.route('/editar-usuario/:id').get((req, res) => {
   usuarioSchema.findById(req.params.id, (error, data) => {

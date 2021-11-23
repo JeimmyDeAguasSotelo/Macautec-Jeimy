@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -37,35 +39,37 @@ function App() {
 
             <Nav className="justify-content-end">
               <Nav>
-                <Link to={"/crear-usuario"} className="nav-link">
-                  Crear Usuario
-                </Link>
+                <Menu menuButton={<MenuButton>Planta</MenuButton>}>
+                  <SubMenu label="Servicios">
+                    <MenuItem onClick={() => window.location = "/servicios"}>Lista</MenuItem>
+                    <MenuItem onClick={() => window.location = "/crear-servicio"}>Nuevo</MenuItem>
+                  </SubMenu>
+
+
+                </Menu>
               </Nav>
+
               <Nav>
-                <Link to={"/usuarios"} className="nav-link">
-                  Lista Usuarios
-                </Link>
+                <Menu menuButton={<MenuButton>Mecanico</MenuButton>}>
+                </Menu>
               </Nav>
+              
               <Nav>
-                <Link to={"/crear-servicio"} className="nav-link">
-                  Crear Servicio
-                </Link>
-              </Nav>
-              <Nav>
-                <Link to={"/servicios"} className="nav-link">
-                  Lista Servicios
-                </Link>
-              </Nav>
-              <Nav>
-                <Link to={"/crear-cita"} className="nav-link">
-                  Crear Cita
-                </Link>
-              </Nav>
-              <Nav>
-                <Link to={"/citas"} className="nav-link">
-                  Lista Citas
-                </Link>
-              </Nav>              
+                <Menu menuButton={<MenuButton>Administracion</MenuButton>}>
+                  <SubMenu label="Usuarios">
+                    <MenuItem onClick={() => window.location = "/usuarios"}>Lista</MenuItem>
+                    <MenuItem onClick={() => window.location = "/crear-usuario"}>Nuevo</MenuItem>
+                  </SubMenu>
+                  <SubMenu label="Servicios">
+                    <MenuItem onClick={() => window.location = "/servicios"}>Lista</MenuItem>
+                    <MenuItem onClick={() => window.location = "/crear-servicio"}>Nuevo</MenuItem>
+                  </SubMenu>
+                  <SubMenu label="Citas">
+                    <MenuItem onClick={() => window.location = "/citas"}>Lista</MenuItem>
+                    <MenuItem onClick={() => window.location = "/crear-cita"}>Nuevo</MenuItem>
+                  </SubMenu>
+                </Menu>
+              </Nav> 
             </Nav>
 
           </Container>

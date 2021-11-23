@@ -5,9 +5,6 @@ let citaSchema = new Schema({
   servicio: {
     type: Object
   },
-  mecanico: {
-    type: Object
-  },
   estado: {
     type: String
   },

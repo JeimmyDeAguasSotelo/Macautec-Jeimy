@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Select from 'react-select'
 
 export default class CrearServicio extends Component {
 
@@ -11,6 +12,7 @@ export default class CrearServicio extends Component {
     // Setting up functions
     this.onChangeNombreServicio = this.onChangeNombreServicio.bind(this);
     this.onChangeEstadoServicio = this.onChangeEstadoServicio.bind(this);
+    this.onChangeMecanicoServicio = this.onChangeMecanicoServicio.bind(this);
     this.onChangeDescripcionServicio = this.onChangeDescripcionServicio.bind(this);
     this.onChangeCostoServicio = this.onChangeCostoServicio.bind(this);
     this.onChangeDuracionhorasServicio = this.onChangeDuracionhorasServicio.bind(this);
@@ -22,8 +24,28 @@ export default class CrearServicio extends Component {
       estado: '',
       descripcion: '',
       costo: '',
-      duracionhoras: ''
+      duracionhoras: '',
+      mecanicos:[]
     }
+    
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:4000/usuarios/mecanicos').then(res => {
+  
+      var data = res.data
+      var loopData = ''
+      var i ;
+      var mecs = []
+      for(i=0; i < data.length; i++){
+        mecs.push({ value: data[i].id, label: data[i].nombre });
+        //loopData += `<li>${data[i].name}</li>`
+      }
+      this.setState({
+        mecanicos: mecs
+      });
+    });
+    
   }
 
   onChangeNombreServicio(e) {
@@ -32,6 +54,10 @@ export default class CrearServicio extends Component {
 
   onChangeEstadoServicio(e) {
     this.setState({ estado: e.target.value })
+  }
+
+  onChangeMecanicoServicio(e) {
+    this.setState({ mecanico: e.target.value })
   }
 
   onChangeDescripcionServicio(e) {
@@ -52,6 +78,7 @@ export default class CrearServicio extends Component {
     const ServicioObject = {
       nombre: this.state.nombre,
       estado: this.state.estado,
+      mecanico: this.state.mecanico,
       descripcion: this.state.descripcion,
       costo: this.state.costo,
       duracionhoras: this.state.duracionhoras
@@ -64,14 +91,19 @@ export default class CrearServicio extends Component {
     this.setState({
       nombre: '',
       estado: '',
+      mecanico: '',
       descripcion: '',
       costo: '',
-      duracionhoras: ''
+      duracionhoras: '',
+      mecanicos:this.state.mecanicos
     });
-
+    
   }
 
   render() {
+    const MyComponent = () => (
+      <Select options={this.state.mecanicos} />
+    )
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         
@@ -126,6 +158,10 @@ export default class CrearServicio extends Component {
           
         </Form.Group>
 
+        <Form.Group controlId="Mecanico">
+          <Form.Label><strong>Mecanico</strong></Form.Label>
+          <MyComponent value={this.state.mecanico} onChange={this.onChangeMecanicoServicio} required />
+        </Form.Group>
 
         <Form.Group controlId="Descripcion">
           <Form.Label><strong>Descripcion</strong></Form.Label>
