@@ -37,6 +37,12 @@ const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'eltokendemipagina'
+  });
+});
+
 // 404 Error
 app.use((req, res, next) => {
   console.log('404')

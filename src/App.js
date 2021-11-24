@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -22,9 +22,16 @@ import ListaServicio from "./components/lista-servicios.component";
 import CrearCita from "./components/crear-cita.component";
 import EditarCita from "./components/editar-cita.component";
 import ListaCita from "./components/lista-cita.component";
-
+import Login from './components/login.component';
+import useToken from './useToken';
 
 function App() {
+  const { token, setToken } = useToken();
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (<Router>    
     <div className="App">
       <header className="App-header">
