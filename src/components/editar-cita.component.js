@@ -17,10 +17,12 @@ export default class EditarCita extends Component {
 
     // Setting up state
     this.state = {
-      servicio: '',
+      servicio: {},
       fecha: '',
+      estado: 'Agendada',
       hora: '',
-      placavehiculo: ''      
+      placavehiculo: '',
+      servicios:[]     
     }
   }
 
@@ -38,10 +40,27 @@ export default class EditarCita extends Component {
       .catch((error) => {
         console.log(error);
       })
+
+      axios.get('http://localhost:4000/servicios/activos').then(res => {
+        this.setState({
+          servicios: res.data
+        });
+      });
+      
   }
 
   onChangeServicio(e) {
-    this.setState({ servicio: e.target.value })
+    var found = false
+    var i = 0
+    while(!found && i < this.state.servicios.length){
+
+      if(this.state.servicios[i]._id === e.target.value){
+        this.setState({ servicio: this.state.servicios[i]})
+        //console.log(this.state.servicios[i])
+        found = true
+      }
+      i++
+    }
   }
 
   onChangeFecha(e) {
@@ -82,23 +101,27 @@ export default class EditarCita extends Component {
 
 
   render() {
+
+    const { servicios } = this.state;
+
+    let servsList = servicios.length > 0
+      && servicios.map((item, i) => {
+      return (
+        <option key={i} value={item._id}>{item.nombre}</option>
+      )
+    }, this);
+
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         
-        <div className="form-group" >
+      <div className="form-group" >
           <label>
             <strong>Servicio</strong>
             </label>
             <br></br>
-              <select value={this.state.servicio} onChange={this.onChangeServicio} required>
-                <option value="Revisión de frenos">Revisión de frenos</option>
-                <option value="Pastillas">Pastillas</option>
-                <option value="Discos">Discos</option>
-                <option value="Suspensión">Suspensión</option>
-                <option value="Amortiguadores">Amortiguadores</option>
-                <option value="Cambio de aceite">Cambio de aceite</option>
-                <option value="Alineación">Alineación</option>
-                <option value="Rotación de llantas">Rotación de llantas</option>
+              <select value={this.state.servicio._id} onChange={this.onChangeServicio} required>
+                <option value="">Seleccione</option>
+                {servsList}
               </select>
         </div>
 

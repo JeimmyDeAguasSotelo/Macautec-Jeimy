@@ -17,7 +17,8 @@ export default class CrearCita extends Component {
 
     // Setting up state
     this.state = {
-      servicio: '',
+      servicio: {},
+      estado: 'Agendada',
       fecha: '',
       hora: '',
       placavehiculo: '',
@@ -26,7 +27,17 @@ export default class CrearCita extends Component {
   }
 
   onChangeServicio(e) {
-    this.setState({ servicio: e.target.value })
+    var found = false
+    var i = 0
+    while(!found && i < this.state.servicios.length){
+
+      if(this.state.servicios[i]._id === e.target.value){
+        this.setState({ servicio: this.state.servicios[i]})
+        console.log(this.state.servicios[i])
+        found = true
+      }
+      i++
+    }
   }
 
   onChangeFecha(e) {
@@ -43,16 +54,8 @@ export default class CrearCita extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:4000/servicios/activos').then(res => {
-  
-      var data = res.data      
-      var i ;
-      var servs = []
-      for(i=0; i < data.length; i++){
-        servs.push({ value: data[i]._id, label: data[i].nombre });
-        
-      }
       this.setState({
-        servicios: servs
+        servicios: res.data
       });
     });
     
@@ -63,7 +66,7 @@ export default class CrearCita extends Component {
     const CitaObject = {
       servicio: this.state.servicio,
       fecha: this.state.fecha,
-      estado: 'Agendada',
+      estado: this.state.estado,
       hora: this.state.hora,
       placavehiculo: this.state.placavehiculo
     };
@@ -73,10 +76,12 @@ export default class CrearCita extends Component {
       this.props.history.push('/citas');
       //window.location.reload();
     this.setState({
-      servicio: '',
+      servicio: {},
       fecha: '',
+      estado: 'Agendada',
       hora: '',
-      placavehiculo: ''
+      placavehiculo: '',
+      servicios:this.state.servicios
     });
 
   }
@@ -88,7 +93,7 @@ export default class CrearCita extends Component {
     let servsList = servicios.length > 0
       && servicios.map((item, i) => {
       return (
-        <option key={i} value={item.value}>{item.label}</option>
+        <option key={i} value={item._id}>{item.nombre}</option>
       )
     }, this);
 
@@ -100,7 +105,7 @@ export default class CrearCita extends Component {
             <strong>Servicio</strong>
             </label>
             <br></br>
-              <select value={this.state.servicio} onChange={this.onChangeServicio} required>
+              <select value={this.state.servicio._id} onChange={this.onChangeServicio} required>
                 <option value="">Seleccione</option>
                 {servsList}
               </select>
