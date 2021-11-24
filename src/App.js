@@ -44,13 +44,27 @@ function App() {
                     <MenuItem onClick={() => window.location = "/servicios"}>Lista</MenuItem>
                     <MenuItem onClick={() => window.location = "/crear-servicio"}>Nuevo</MenuItem>
                   </SubMenu>
-
+                  <SubMenu label="Citas">
+                    <MenuItem onClick={() => window.location = "/citas"}>Lista</MenuItem>
+                    <MenuItem onClick={() => window.location = "/crear-cita"}>Nuevo</MenuItem>
+                  </SubMenu>
+                  <MenuItem onClick={() => window.location = "/agenda"}>Agenda</MenuItem>
+                  <SubMenu label="Reportes">
+                    <MenuItem onClick={() => window.location = "/servicio-mas"}>Servico mas solicitado</MenuItem>
+                    <MenuItem onClick={() => window.location = "/servicio-menos"}>Servicio menos solicitado</MenuItem>
+                    <MenuItem onClick={() => window.location = "/asignaciones-mecanicos"}>Asignaciones mecanicos</MenuItem>
+                    <MenuItem onClick={() => window.location = "/servicios-completados"}>Servicios completados</MenuItem>
+                  </SubMenu>
 
                 </Menu>
               </Nav>
 
               <Nav>
                 <Menu menuButton={<MenuButton>Mecanico</MenuButton>}>
+                  
+                  <MenuItem onClick={() => window.location = "/mis-servicios"}>Mis servicios</MenuItem>
+                  <MenuItem onClick={() => window.location = "/mis-citas"}>Mis citas</MenuItem>
+                  
                 </Menu>
               </Nav>
               
