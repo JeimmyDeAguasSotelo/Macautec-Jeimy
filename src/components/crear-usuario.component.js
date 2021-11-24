@@ -11,6 +11,8 @@ export default class CrearUsuario extends Component {
     // Setting up functions
     this.onChangeNombreUsuario = this.onChangeNombreUsuario.bind(this);
     this.onChangeEmailUsuario = this.onChangeEmailUsuario.bind(this);
+    this.onChangePasswordUsuario1 = this.onChangePasswordUsuario1.bind(this);
+    this.onChangePasswordUsuario2 = this.onChangePasswordUsuario2.bind(this);
     this.onChangeTipoUsuario = this.onChangeTipoUsuario.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -18,12 +20,35 @@ export default class CrearUsuario extends Component {
     this.state = {
       nombre: '',
       email: '',
-      tipo: ''
+      password: '',
+      password2: '',
+      tipo: '',
+      errors: {}
     }
   }
 
   onChangeNombreUsuario(e) {
     this.setState({ nombre: e.target.value })
+  }
+
+  onChangePasswordUsuario1(e) {
+    let errors = {};
+    errors["password2"] = "";
+    if(e.target.value !== this.state.password2){
+      errors["password2"] = "Las contraseñas deben ser iguales.";
+    }
+    this.setState({errors: errors});
+    this.setState({ password: e.target.value })
+  }
+
+  onChangePasswordUsuario2(e) {
+    let errors = {};
+    errors["password2"] = "";
+    if(e.target.value !== this.state.password){
+      errors["password2"] = "Las contraseñas deben ser iguales.";
+    }
+    this.setState({errors: errors});
+    this.setState({ password2: e.target.value })
   }
 
   onChangeEmailUsuario(e) {
@@ -40,6 +65,7 @@ export default class CrearUsuario extends Component {
     const usuarioObject = {
       nombre: this.state.nombre,
       email: this.state.email,
+      password: this.state.password,
       tipo: this.state.tipo
     };
 
@@ -50,7 +76,9 @@ export default class CrearUsuario extends Component {
     this.setState({
       nombre: '',
       email: '',
-      tipo: ''
+      password: '',
+      tipo: '',
+      errors: {}
     });
 
   }
@@ -60,12 +88,23 @@ export default class CrearUsuario extends Component {
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="Nombre">
           <Form.Label><strong>Nombre</strong></Form.Label>
-          <Form.Control type="text" value={this.state.nombre} onChange={this.onChangeNombreUsuario} />
+          <Form.Control type="text" value={this.state.nombre} onChange={this.onChangeNombreUsuario} required/>
         </Form.Group>
 
         <Form.Group controlId="Email">
           <Form.Label><strong>Email</strong></Form.Label>
-          <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmailUsuario} />
+          <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmailUsuario} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Password1">
+          <Form.Label><strong>Contraseña</strong></Form.Label>
+          <Form.Control type="password" value={this.state.password} onChange={this.onChangePasswordUsuario1} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Password2">
+          <Form.Label><strong>Repetir contraseña</strong></Form.Label>
+          <Form.Control type="password" value={this.state.password2} onChange={this.onChangePasswordUsuario2} required/>
+          <div className="text-danger">{this.state.errors.password2}</div>
         </Form.Group>
 
         <Form.Group controlId="Tipo">
@@ -107,3 +146,4 @@ export default class CrearUsuario extends Component {
     </div>);
   }
 }
+
