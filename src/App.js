@@ -34,6 +34,12 @@ function App() {
     return <Login setToken={setToken} />
   }
 
+  const logout = () => {
+    localStorage.clear();
+    // you can also like localStorage.removeItem('Token');
+    window.location.href = "/login";
+  }
+
   return (<Router>    
     <div className="App">
       <header className="App-header">
@@ -92,7 +98,10 @@ function App() {
                     <MenuItem onClick={() => window.location = "/crear-cita"}>Nuevo</MenuItem>
                   </SubMenu>
                 </Menu>
-              </Nav> 
+              </Nav>
+              <Nav>
+                <button onClick={logout}>Cerrar sesion</button>
+              </Nav>
             </Nav>
 
           </Container>
