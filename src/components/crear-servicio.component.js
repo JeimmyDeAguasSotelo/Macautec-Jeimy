@@ -88,7 +88,7 @@ export default class CrearServicio extends Component {
     axios.post('http://localhost:4000/servicios/crear-servicio', ServicioObject)
       .then(res => console.log(res.data));
       this.props.history.push('/servicios');
-      //window.location.reload();
+      window.location.reload();
     this.setState({
       nombre: '',
       estado: '',
