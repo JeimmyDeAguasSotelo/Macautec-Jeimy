@@ -1,5 +1,6 @@
-let express = require('express');
 let mongoose = require('mongoose');
+let express = require('express');
+let router = express.Router();
 let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
@@ -8,6 +9,7 @@ let dbConfig = require('./database/db');
 const usuarioRoute = require('../backend/routes/usuario.route')
 const servicioRoute = require('../backend/routes/servicio.route')
 const citaRoute = require('../backend/routes/cita.route')
+//const loginRoute = require('../backend/routes/login.route')
 
 // Connecting mongoDB Database
 mongoose.Promise = global.Promise;
@@ -30,6 +32,7 @@ app.use(cors());
 app.use('/usuarios', usuarioRoute)
 app.use('/servicios', servicioRoute)
 app.use('/citas', citaRoute)
+//app.use('/login', loginRoute)
 
 // PORT
 const port = process.env.PORT || 4000;
@@ -37,11 +40,7 @@ const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
 
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'eltokendemipagina'
-  });
-});
+
 
 // 404 Error
 app.use((req, res, next) => {

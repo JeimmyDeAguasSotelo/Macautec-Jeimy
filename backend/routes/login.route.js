@@ -1,4 +1,4 @@
-  let mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
 
@@ -46,39 +46,6 @@ router.route('/editar-usuario/:id').get((req, res) => {
       return next(error)
     } else {
       res.json(data)
-    }
-  })
-})
-
-// Obtener unico Usuario por email y password
-router.route('/login/').post((req, res) => {
-  let obj = { email: req.body.email, password: req.body.password };
-  //console.log(obj)
-  usuarioSchema.find(obj, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      
-      if(JSON.stringify(data) === '[]'){
-        obj = {
-          token: '',
-          usuario: [],
-          login: false,
-          error:'Usuario y/o contraseña incorrectos'
-        }
-        res.json(obj)
-        console.log(obj)
-      }else{
-        obj = {
-          token: 'algunbonitotoken',
-          usuario: data,
-          login: true,
-          error:''
-        }
-        res.json(obj)
-        console.log(obj)
-      }
-      
     }
   })
 })
