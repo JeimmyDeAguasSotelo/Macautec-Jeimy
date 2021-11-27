@@ -39,6 +39,17 @@ router.route('/:servicio').get((req, res) => {
   })
 })
 
+// Obtener las Citas de un servicio
+router.route('/mecanico/:id').get((req, res) => {
+  citaSchema.find({ 'servicio.mecanico.value' : req.params.id },(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // Obtener unico Cita
 router.route('/editar-cita/:id').get((req, res) => {
   citaSchema.findById(req.params.id, (error, data) => {
