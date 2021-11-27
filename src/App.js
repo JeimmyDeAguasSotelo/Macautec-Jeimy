@@ -15,6 +15,8 @@ import CrearUsuario from "./components/crear-usuario.component";
 import EditarUsuario from "./components/editar-usuario.component";
 import ListaUsuarios from "./components/lista-usuarios.component";
 
+import Agenda from "./components/agenda-component";
+
 import CrearServicio from "./components/crear-servicio.component";
 import EditarServicio from "./components/editar-servicio.component";
 import ListaServicio from "./components/lista-servicios.component";
@@ -63,7 +65,7 @@ function App() {
                     <MenuItem onClick={() => window.location = "/citas"}>Lista</MenuItem>
                     <MenuItem onClick={() => window.location = "/crear-cita"}>Nuevo</MenuItem>
                   </SubMenu>
-                  <MenuItem onClick={() => window.location = "/agenda"}>Agenda</MenuItem>
+                  <MenuItem onClick={() => window.location = "/agenda/"}>Agenda</MenuItem>
                   <SubMenu label="Reportes">
                     <MenuItem onClick={() => window.location = "/servicio-mas"}>Servico mas solicitado</MenuItem>
                     <MenuItem onClick={() => window.location = "/servicio-menos"}>Servicio menos solicitado</MenuItem>
@@ -123,6 +125,7 @@ function App() {
                 <Route path="/crear-cita/" component={CrearCita} />
                 <Route path="/editar-cita/:id" component={EditarCita} />
                 <Route path="/citas/" component={ListaCita} />
+                <Route path="/agenda/" component={Agenda} />
               </Switch>
             </div>
           </Col>

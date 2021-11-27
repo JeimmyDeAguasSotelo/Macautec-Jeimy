@@ -1,3 +1,6 @@
+@import '../node_modules/react-agenda/build/styles.css';
+@import '../node_modules/react-datetime/css/react-datetime.css';
+
 .wrapper {
   padding-top: 30px;
 }
