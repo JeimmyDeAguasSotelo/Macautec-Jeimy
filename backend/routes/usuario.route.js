@@ -69,11 +69,12 @@ router.route('/login/').post((req, res) => {
         res.json(obj)
         //console.log(obj)
       }else{
+        usr = {_id:data[0]._id,nombre:data[0].nombre,email:data[0].email,tipo:data[0].tipo}
+        
         obj = {
           token: 'algunbonitotoken',
-          usuario: data,
-          login: true,
-          error:''
+          usuario: usr,
+          login: true
         }
         res.json(obj)
         //console.log(obj)

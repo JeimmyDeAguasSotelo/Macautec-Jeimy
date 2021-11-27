@@ -26,6 +26,7 @@ import ListaServicio from "./components/lista-servicios.component";
 import CrearCita from "./components/crear-cita.component";
 import EditarCita from "./components/editar-cita.component";
 import ListaCita from "./components/lista-cita.component";
+import ListaCitasMecanico from "./components/lista-cita-mecanico.component";
 //agregue login session siguendo esta guia
 //https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
 import Login from './components/login.component';
@@ -33,15 +34,19 @@ import useToken from './useToken';
 
 function App() {
   const { token, setToken } = useToken();
-
+  //console.log(token)
   if(!token) {
     return <Login setToken={setToken} />
   }
 
+  const session = localStorage.getItem('token');
+  const sess = JSON.parse(session)
+  //console.log(sess.usuario.nombre)
+
   const logout = () => {
     localStorage.clear();
     // you can also like localStorage.removeItem('Token');
-    window.location.href = "/login";
+    window.location.href = "/";
   }
 
   return (<Router>    
@@ -58,6 +63,9 @@ function App() {
 
             <Nav className="justify-content-end">
               <Nav>
+                <Link to={"/"} className="nav-link">
+                  {sess.usuario.nombre}
+                </Link>
                 <Menu menuButton={<MenuButton>Planta</MenuButton>}>
                   <SubMenu label="Servicios">
                     <MenuItem onClick={() => window.location = "/servicios"}>Lista</MenuItem>
@@ -127,6 +135,7 @@ function App() {
                 <Route path="/crear-cita/" component={CrearCita} />
                 <Route path="/editar-cita/:id" component={EditarCita} />
                 <Route path="/citas/" component={ListaCita} />
+                <Route path="/mis-citas/" component={ListaCitasMecanico} />
                 <Route path="/agenda/mecanico/:id" component={AgendaMecanico} />
                 <Route path="/agenda/:servicio" component={AgendaServicio} />
                 <Route path="/agenda/" component={Agenda} />                
