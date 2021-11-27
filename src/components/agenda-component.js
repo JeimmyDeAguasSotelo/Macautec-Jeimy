@@ -17,19 +17,20 @@ var filtroColor = {
   "Rotación de llantas":"7"
 }
 
+//saque los colores de aca .
+//https://www.rapidtables.com/web/color/RGB_Color.html
 var colors= {
   '0':"rgba(102, 195, 131 , 1)" ,
   "1":"rgba(242, 177, 52, 1)" ,
   "2":"rgba(235, 85, 59, 1)" ,
-  "3":"rgba(235, 85, 59, 1)" ,
-  "4":"rgba(235, 85, 59, 1)" ,
-  "5":"rgba(235, 85, 59, 1)" ,
-  "6":"rgba(235, 85, 59, 1)" ,
-  "7":"rgba(235, 85, 59, 1)" 
+  "3":"rgba(102, 102, 255, 1)" ,
+  "4":"rgba(102, 255, 102, 1)" ,
+  "5":"rgba(255, 255, 102, 1)" ,
+  "6":"rgba(255, 153, 51, 1)" ,
+  "7":"rgba(102, 255, 178, 1)" 
 }
 
 var now = new Date();
-
 var items = [];
 
 var items3 = [
@@ -74,11 +75,13 @@ export default class Agenda extends React.Component {
 
         var data = res.data;         
         var items = []
+        
         for(var i=0; i < data.length; i++){
 
           var dat = data[i].fecha;
           dat = dat.split('T');
           dat = dat[0].split('-');
+
           var fechaAgendaInicio = new Date(dat[0],dat[1] - 1,dat[2],data[i].hora);
           var fechaAgendaFin = new Date(dat[0],dat[1] - 1,dat[2],parseInt(data[i].hora) + parseInt(data[i].servicio.duracionhoras));
 
@@ -94,7 +97,7 @@ export default class Agenda extends React.Component {
           items.push(agendaItem);
 
           
-        }
+        }        
         this.setState({
           items: items
         });
@@ -111,7 +114,7 @@ export default class Agenda extends React.Component {
         locale:"es",
         rowsPerHour:2,
         numberOfDays:5,
-        startDate: new Date(now.getFullYear(), now.getMonth(), now.getDate()-1)
+        startDate: new Date()
       }
       this.handleCellSelection = this.handleCellSelection.bind(this)
       this.handleItemEdit = this.handleItemEdit.bind(this)

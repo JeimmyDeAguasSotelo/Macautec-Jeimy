@@ -33,7 +33,7 @@ export default class CrearCita extends Component {
 
       if(this.state.servicios[i]._id === e.target.value){
         this.setState({ servicio: this.state.servicios[i]})
-        console.log(this.state.servicios[i])
+        //console.log(this.state.servicios[i])
         found = true
       }
       i++
@@ -70,11 +70,12 @@ export default class CrearCita extends Component {
       hora: this.state.hora,
       placavehiculo: this.state.placavehiculo
     };
+    console.log(CitaObject)
 
     axios.post('http://localhost:4000/citas/crear-cita', CitaObject)
       .then(res => console.log(res.data));
       this.props.history.push('/citas');
-      window.location.reload();
+      //window.location.reload();
     this.setState({
       servicio: {},
       fecha: '',
