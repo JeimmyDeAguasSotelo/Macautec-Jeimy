@@ -9,7 +9,6 @@ let dbConfig = require('./database/db');
 const usuarioRoute = require('../backend/routes/usuario.route')
 const servicioRoute = require('../backend/routes/servicio.route')
 const citaRoute = require('../backend/routes/cita.route')
-//const loginRoute = require('../backend/routes/login.route')
 
 // Connecting mongoDB Database
 mongoose.Promise = global.Promise;

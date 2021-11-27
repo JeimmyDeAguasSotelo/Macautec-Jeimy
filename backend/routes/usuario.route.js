@@ -67,7 +67,7 @@ router.route('/login/').post((req, res) => {
           error:'Usuario y/o contraseña incorrectos'
         }
         res.json(obj)
-        console.log(obj)
+        //console.log(obj)
       }else{
         obj = {
           token: 'algunbonitotoken',
@@ -76,7 +76,7 @@ router.route('/login/').post((req, res) => {
           error:''
         }
         res.json(obj)
-        console.log(obj)
+        //console.log(obj)
       }
       
     }

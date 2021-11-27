@@ -65,14 +65,14 @@ var items3 = [
 
 ];
 
-export default class Agenda extends React.Component {
+export default class AgendaServicio extends React.Component {
     constructor(props){
     super(props);
-    
+      console.log(this.props.match.params.servicio)
 
-      axios.get('http://localhost:4000/citas/')
+      axios.get('http://localhost:4000/citas/'+this.props.match.params.servicio)
       .then(res => {
-        console.log('got here')
+        console.log(res.data)
         var data = res.data;         
         var items = []
         
@@ -93,7 +93,7 @@ export default class Agenda extends React.Component {
             endDateTime   : fechaAgendaFin,
             classes : filtroColor[data[i].servicio.nombre]
           }
-          //console.log(agendaItem)
+          console.log(agendaItem)
           items.push(agendaItem);
 
           

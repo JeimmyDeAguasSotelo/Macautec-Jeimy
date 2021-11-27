@@ -16,6 +16,7 @@ import EditarUsuario from "./components/editar-usuario.component";
 import ListaUsuarios from "./components/lista-usuarios.component";
 
 import Agenda from "./components/agenda-component";
+import AgendaServicio from "./components/agenda-servicio-component";
 
 import CrearServicio from "./components/crear-servicio.component";
 import EditarServicio from "./components/editar-servicio.component";
@@ -125,7 +126,8 @@ function App() {
                 <Route path="/crear-cita/" component={CrearCita} />
                 <Route path="/editar-cita/:id" component={EditarCita} />
                 <Route path="/citas/" component={ListaCita} />
-                <Route path="/agenda/" component={Agenda} />
+                <Route path="/agenda/:servicio" component={AgendaServicio} />
+                <Route path="/agenda/" component={Agenda} />                
               </Switch>
             </div>
           </Col>

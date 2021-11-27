@@ -31,10 +31,13 @@ export default class ServicioTableRow extends Component {
                 <td>{this.props.obj.costo}</td>
                 <td>{this.props.obj.duracionhoras}</td>
                 <td>
-                    <Link className="edit-link" to={"/editar-servicio/" + this.props.obj._id}>
+                    <Link className="btn btn-primary" to={"/agenda/" + this.props.obj.nombre}>
+                        Agenda
+                    </Link>
+                    <Link className="btn btn-success" to={"/editar-servicio/" + this.props.obj._id}>
                         Editar
                     </Link>
-                    <Button onClick={this.borrarServicio} size="sm" variant="danger">Borrar</Button>
+                    <Button onClick={this.borrarServicio} className="btn btn-danger" variant="danger">Borrar</Button>
                 </td>
             </tr>
         );
