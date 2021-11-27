@@ -62,6 +62,10 @@ export default class EditarCita extends Component {
       i++
     }
   }
+  
+  onChangeEstado(e) {
+    this.setState({ estado: e.target.value })
+  }
 
   onChangeFecha(e) {
     this.setState({ fecha: e.target.value })
@@ -124,6 +128,49 @@ export default class EditarCita extends Component {
                 {servsList}
               </select>
         </div>
+
+        <Form.Group controlId="Estado">
+          <Form.Label><strong>Estado</strong></Form.Label>
+        </Form.Group>
+        <div className="form-group">
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesEstado"
+                id="Agendada"
+                value="Agendada"
+                checked={this.state.estado === "Agendada"}
+                onChange={this.onChangeEstado}
+                required
+              />
+              <label className="form-check-label">Agendada</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesEstado"
+                id="Cancelada"
+                value="Cancelada"
+                checked={this.state.estado === "Cancelada"}
+                onChange={this.onChangeEstado}
+              />
+              <label className="form-check-label">Cancelada</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesEstado"
+                id="Completa"
+                value="Completa"
+                checked={this.state.estado === "Completa"}
+                onChange={this.onChangeEstado}
+              />
+              <label className="form-check-label">Completa</label>
+            </div>
+          </div>
 
         <Form.Group controlId="Fecha">
           <Form.Label><strong>Fecha</strong></Form.Label>
