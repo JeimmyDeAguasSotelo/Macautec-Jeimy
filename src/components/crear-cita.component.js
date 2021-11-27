@@ -10,6 +10,7 @@ export default class CrearCita extends Component {
 
     // Setting up functions
     this.onChangeServicio = this.onChangeServicio.bind(this);
+    this.onChangeEstado = this.onChangeEstado.bind(this);
     this.onChangeFecha = this.onChangeFecha.bind(this);
     this.onChangeHora = this.onChangeHora.bind(this);
     this.onChangePlacaVehiculo = this.onChangePlacaVehiculo.bind(this);
@@ -42,6 +43,10 @@ export default class CrearCita extends Component {
 
   onChangeFecha(e) {
     this.setState({ fecha: e.target.value })
+  }
+  
+  onChangeEstado(e) {
+    this.setState({ estado: e.target.value })
   }
 
   onChangeHora(e) {
@@ -111,6 +116,49 @@ export default class CrearCita extends Component {
                 {servsList}
               </select>
         </div>
+
+        <Form.Group controlId="Estado">
+          <Form.Label><strong>Estado</strong></Form.Label>
+        </Form.Group>
+        <div className="form-group">
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesEstado"
+                id="Agendada"
+                value="Agendada"
+                checked={this.state.estado === "Agendada"}
+                onChange={this.onChangeEstado}
+                required
+              />
+              <label className="form-check-label">Agendada</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesEstado"
+                id="Cancelada"
+                value="Cancelada"
+                checked={this.state.estado === "Cancelada"}
+                onChange={this.onChangeEstado}
+              />
+              <label className="form-check-label">Cancelada</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesEstado"
+                id="Completa"
+                value="Completa"
+                checked={this.state.estado === "Completa"}
+                onChange={this.onChangeEstado}
+              />
+              <label className="form-check-label">Completa</label>
+            </div>
+          </div>
 
         <Form.Group controlId="Fecha">
           <Form.Label><strong>Fecha</strong></Form.Label>

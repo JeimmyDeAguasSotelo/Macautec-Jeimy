@@ -10,6 +10,7 @@ export default class EditarCita extends Component {
 
     // Setting up functions
     this.onChangeServicio = this.onChangeServicio.bind(this);
+    this.onChangeEstado = this.onChangeEstado.bind(this);
     this.onChangeFecha = this.onChangeFecha.bind(this);
     this.onChangeHora = this.onChangeHora.bind(this);
     this.onChangePlacaVehiculo = this.onChangePlacaVehiculo.bind(this);
@@ -18,8 +19,8 @@ export default class EditarCita extends Component {
     // Setting up state
     this.state = {
       servicio: {},
-      fecha: '',
       estado: 'Agendada',
+      fecha: '',      
       hora: '',
       placavehiculo: '',
       servicios:[]     
