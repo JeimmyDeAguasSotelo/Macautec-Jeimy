@@ -27,15 +27,20 @@ export default class CitaTableRow extends Component {
         return (
             <tr>
                 <td>{this.props.obj.servicio.nombre}</td>
+                <td>{this.props.obj.servicio.mecanico.label}</td>
+                <td>{this.props.obj.servicio.duracionhoras}</td>
                 <td>{this.props.obj.estado}</td>
                 <td>{this.props.obj.fecha.split('T')[0]}</td>
                 <td>{this.props.obj.hora+":00"}</td>
                 <td>{this.props.obj.placavehiculo}</td>
                 <td>
-                    <Link className="edit-link" to={"/editar-cita/" + this.props.obj._id}>
+                    <Link className="btn btn-primary" to={"/agenda/" + this.props.obj.servicio.nombre}>
+                        Agenda
+                    </Link>
+                    <Link className="btn btn-success" to={"/editar-cita/" + this.props.obj._id}>
                         Editar
                     </Link>
-                    <Button onClick={this.borrarCita} size="sm" variant="danger">Borrar</Button>
+                    <Button onClick={this.borrarCita} className="btn btn-danger" variant="danger">Borrar</Button>
                 </td>
             </tr>
         );

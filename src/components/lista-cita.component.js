@@ -38,6 +38,8 @@ export default class ListaCitas extends Component {
         <thead>
           <tr>
             <th>Servicio</th>
+            <th>Mecanico</th>
+            <th>Duracion</th>
             <th>Estado</th>
             <th>Fecha</th>
             <th>Hora</th>

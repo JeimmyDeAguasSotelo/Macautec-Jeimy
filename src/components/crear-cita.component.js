@@ -99,7 +99,7 @@ export default class CrearCita extends Component {
     let servsList = servicios.length > 0
       && servicios.map((item, i) => {
       return (
-        <option key={i} value={item._id}>{item.nombre}</option>
+        <option key={i} value={item._id}>{item.nombre +', '+item.mecanico.label+', '+item.duracionhoras}</option>
       )
     }, this);
 
@@ -112,7 +112,7 @@ export default class CrearCita extends Component {
             </label>
             <br></br>
               <select value={this.state.servicio._id} onChange={this.onChangeServicio} required>
-                <option value="">Seleccione</option>
+                <option value="">Seleccione (Servicio, Mecanico, Estimado)</option>
                 {servsList}
               </select>
         </div>
