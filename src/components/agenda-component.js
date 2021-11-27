@@ -1,19 +1,38 @@
 import React from 'react';
 import { ReactAgenda , ReactAgendaCtrl , guid ,  Modal } from 'react-agenda';
+import axios from 'axios';
 
 //https://github.com/revln9/react-agenda AQUI LA GUIA PARA LA AGENDA
 
 require('../../node_modules/moment/locale/es.js')
 
+var filtroColor = {
+  "Revisión de frenos":"0",
+  "Pastillas":"1",
+  "Discos":"2",
+  "Suspensión":"3",
+  "Amortiguadores":"4",
+  "Cambio de aceite":"5",
+  "Alineación":"6",
+  "Rotación de llantas":"7"
+}
+
 var colors= {
-  'color-1':"rgba(102, 195, 131 , 1)" ,
-  "color-2":"rgba(242, 177, 52, 1)" ,
-  "color-3":"rgba(235, 85, 59, 1)"
+  '0':"rgba(102, 195, 131 , 1)" ,
+  "1":"rgba(242, 177, 52, 1)" ,
+  "2":"rgba(235, 85, 59, 1)" ,
+  "3":"rgba(235, 85, 59, 1)" ,
+  "4":"rgba(235, 85, 59, 1)" ,
+  "5":"rgba(235, 85, 59, 1)" ,
+  "6":"rgba(235, 85, 59, 1)" ,
+  "7":"rgba(235, 85, 59, 1)" 
 }
 
 var now = new Date();
 
-var items = [
+var items = [];
+
+var items3 = [
   {
     _id            : guid(),
     name          : 'Servicio 1, Mecanico 1',
@@ -48,6 +67,42 @@ var items = [
 export default class Agenda extends React.Component {
     constructor(props){
     super(props);
+    
+
+      axios.get('http://localhost:4000/citas/')
+      .then(res => {
+
+        var data = res.data;         
+        var items = []
+        for(var i=0; i < data.length; i++){
+
+          var dat = data[i].fecha;
+          dat = dat.split('T');
+          dat = dat[0].split('-');
+          var fechaAgendaInicio = new Date(dat[0],dat[1] - 1,dat[2],data[i].hora);
+          var fechaAgendaFin = new Date(dat[0],dat[1] - 1,dat[2],parseInt(data[i].hora) + parseInt(data[i].servicio.duracionhoras));
+
+          var agendaItem = { 
+            _id:guid(), 
+            id: data[i]._id, 
+            name: data[i].servicio.nombre + ': '+data[i].servicio.mecanico.label, 
+            startDateTime: fechaAgendaInicio,
+            endDateTime   : fechaAgendaFin,
+            classes : filtroColor[data[i].servicio.nombre]
+          }
+          //console.log(agendaItem)
+          items.push(agendaItem);
+
+          
+        }
+        this.setState({
+          items: items
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
       this.state = {
         items:items,
         selected:[],

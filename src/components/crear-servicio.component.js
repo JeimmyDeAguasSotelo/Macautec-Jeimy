@@ -33,10 +33,9 @@ export default class CrearServicio extends Component {
   componentDidMount() {
     axios.get('http://localhost:4000/usuarios/mecanicos').then(res => {
   
-      var data = res.data      
-      var i ;
+      var data = res.data;      
       var mecs = []
-      for(i=0; i < data.length; i++){
+      for(var i=0; i < data.length; i++){
         mecs.push({ value: data[i]._id, label: data[i].nombre });
         
       }
