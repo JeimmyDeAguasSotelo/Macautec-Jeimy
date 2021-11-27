@@ -22,15 +22,19 @@ export default class UsuarioTableRow extends Component {
     }
 
     render() {
+        const esMecanico = this.props.obj.tipo === 'Mecanico'
+
         return (
             <tr>
                 <td>{this.props.obj.nombre}</td>
                 <td>{this.props.obj.email}</td>
                 <td>{this.props.obj.tipo}</td>
                 <td>
+                    {esMecanico ? (
                     <Link className="btn btn-primary" to={"/agenda/mecanico/" + this.props.obj._id}>
                         Agenda
                     </Link>
+                    ):(<div></div>)}
                     <Link className="btn btn-success" to={"/editar-usuario/" + this.props.obj._id}>
                         Editar
                     </Link>
