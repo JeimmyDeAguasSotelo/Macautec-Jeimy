@@ -53,10 +53,10 @@ export default class Agenda extends React.Component {
         selected:[],
         cellHeight:30,
         showModal:false,
-        locale:"fr",
+        locale:"es",
         rowsPerHour:2,
-        numberOfDays:4,
-        startDate: new Date()
+        numberOfDays:5,
+        startDate: new Date(now.getFullYear(), now.getMonth(), now.getDate()-1)
       }
       this.handleCellSelection = this.handleCellSelection.bind(this)
       this.handleItemEdit = this.handleItemEdit.bind(this)
@@ -76,8 +76,8 @@ export default class Agenda extends React.Component {
       return (
         <div>
           <ReactAgenda
-            minDate={now}
-            maxDate={new Date(now.getFullYear(), now.getMonth()+3)}
+            minDate={new Date(now.getFullYear(), now.getMonth()-3, now.getDate())}
+            maxDate={new Date(now.getFullYear(), now.getMonth()+3, now.getDate())}
             disablePrevButton={false}
             startDate={this.state.startDate}
             cellHeight={this.state.cellHeight}
