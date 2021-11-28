@@ -27,6 +27,8 @@ import CrearCita from "./components/crear-cita.component";
 import EditarCita from "./components/editar-cita.component";
 import ListaCita from "./components/lista-cita.component";
 import ListaCitasMecanico from "./components/lista-cita-mecanico.component";
+import CitaMecanicoComentarios from "./components/cita-mecanico-comentarios.component";
+
 //agregue login session siguendo esta guia
 //https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
 import Login from './components/login.component';
@@ -136,6 +138,7 @@ function App() {
                 <Route path="/editar-cita/:id" component={EditarCita} />
                 <Route path="/citas/" component={ListaCita} />
                 <Route path="/mis-citas/" component={ListaCitasMecanico} />
+                <Route path="/comentarios/:id" component={CitaMecanicoComentarios} />                
                 <Route path="/agenda/mecanico/:id" component={AgendaMecanico} />
                 <Route path="/agenda/:servicio" component={AgendaServicio} />
                 <Route path="/agenda/" component={Agenda} />                

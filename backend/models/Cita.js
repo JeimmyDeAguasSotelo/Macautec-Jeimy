@@ -17,6 +17,9 @@ let citaSchema = new Schema({
   placavehiculo: {
     type: String
   },
+  comentarios: {
+    type: Object
+  }
 }, {
     collection: 'cita'
   })
