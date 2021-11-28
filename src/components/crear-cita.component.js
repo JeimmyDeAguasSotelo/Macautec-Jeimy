@@ -79,8 +79,9 @@ export default class CrearCita extends Component {
 
     axios.post('http://localhost:4000/citas/crear-cita', CitaObject)
       .then(res => console.log(res.data));
-      this.props.history.push('/citas');
+      //this.props.history.push('/citas');
       //window.location.reload();
+      window.location.href = "http://localhost:3000/citas/";
     this.setState({
       servicio: {},
       fecha: '',
