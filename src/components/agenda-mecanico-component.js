@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactAgenda , ReactAgendaCtrl , guid ,  Modal } from 'react-agenda';
+import { ReactAgenda , guid } from 'react-agenda';
 import axios from 'axios';
 
 //https://github.com/revln9/react-agenda AQUI LA GUIA PARA LA AGENDA
@@ -32,38 +32,6 @@ var colors= {
 
 var now = new Date();
 var items = [];
-
-var items3 = [
-  {
-    _id            : guid(),
-    name          : 'Servicio 1, Mecanico 1',
-    startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0),
-    endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
-    classes       : 'color-1'
-  },
-  {
-    _id            : guid(),
-    name          : 'Servicio 3, Mecanico 4',
-    startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
-    endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 30),
-    classes       : 'color-1 color-2'
-  },
-  {
-    _id            : guid(),
-    name          : 'Servicio 5, Lucas',
-    startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 9, 0),
-    endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 12, 0),
-    classes       : 'color-2 color-3'
-  },
-  {
-    _id            : guid(),
-    name          : 'Servicio 55, Jeimy',
-    startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 14, 0),
-    endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 14, 30),
-    classes       : 'color-3'
-  }
-
-];
 
 export default class AgendaMecanico extends React.Component {
     constructor(props){
