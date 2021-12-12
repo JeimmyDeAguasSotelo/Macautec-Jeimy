@@ -10,6 +10,9 @@ export default class EditarUsuario extends Component {
 
     this.onChangeNombreUsuario = this.onChangeNombreUsuario.bind(this);
     this.onChangeEmailUsuario = this.onChangeEmailUsuario.bind(this);
+    this.onChangeCedulaUsuario = this.onChangeCedulaUsuario.bind(this);
+    this.onChangeTelefonoUsuario = this.onChangeTelefonoUsuario.bind(this);
+    this.onChangeFechaUsuario = this.onChangeFechaUsuario.bind(this);
     this.onChangePasswordUsuario1 = this.onChangePasswordUsuario1.bind(this);
     this.onChangePasswordUsuario2 = this.onChangePasswordUsuario2.bind(this);
     this.onChangeTipoUsuario = this.onChangeTipoUsuario.bind(this);
@@ -19,6 +22,9 @@ export default class EditarUsuario extends Component {
     this.state = {
       nombre: '',
       email: '',
+      cedula: '',
+      telefono: '',
+      fechanacimiento: '',
       password: '',
       password2: '',
       tipo: '',
@@ -32,6 +38,9 @@ export default class EditarUsuario extends Component {
         this.setState({
           nombre: res.data.nombre,
           email: res.data.email,
+          cedula: res.data.cedula,
+          telefono: res.data.telefono,
+          fechanacimiento: res.data.fechanacimiento.split('T')[0],
           tipo: res.data.tipo
         });
       })
@@ -42,6 +51,18 @@ export default class EditarUsuario extends Component {
 
   onChangeNombreUsuario(e) {
     this.setState({ nombre: e.target.value })
+  }
+
+  onChangeCedulaUsuario(e) {
+    this.setState({ cedula: e.target.value })
+  }
+
+  onChangeTelefonoUsuario(e) {
+    this.setState({ telefono: e.target.value })
+  }
+
+  onChangeFechaUsuario(e) {
+    this.setState({ fechanacimiento: e.target.value })
   }
 
   onChangePasswordUsuario1(e) {
@@ -75,16 +96,22 @@ export default class EditarUsuario extends Component {
   onSubmit(e) {
     e.preventDefault()
 
-    const studentObject = {
+    var ahora = new Date()
+
+    const usuarioObject = {
       nombre: this.state.nombre,
       email: this.state.email,
+      cedula: this.state.cedula,
+      telefono: this.state.telefono,
+      fechanacimiento: this.state.fechanacimiento,
       password: this.state.password,
-      tipo: this.state.tipo
+      tipo: this.state.tipo,
+      actualizado: ahora 
     };
 
-    axios.put('http://localhost:4000/usuarios/editar-usuario/' + this.props.match.params.id, studentObject)
+    axios.put('http://localhost:4000/usuarios/editar-usuario/' + this.props.match.params.id, usuarioObject)
       .then((res) => {
-        console.log(res.data)
+        //console.log(res.data)
         console.log('Usuario editado con exito')
         window.location.reload()
       }).catch((error) => {
@@ -104,9 +131,24 @@ export default class EditarUsuario extends Component {
           <Form.Control type="text" value={this.state.nombre} onChange={this.onChangeNombreUsuario} />
         </Form.Group>
 
+        <Form.Group controlId="Cedula">
+          <Form.Label><strong>Cedula</strong></Form.Label>
+          <Form.Control type="number" value={this.state.cedula} onChange={this.onChangeCedulaUsuario} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Telefono">
+          <Form.Label><strong>Telefono</strong></Form.Label>
+          <Form.Control type="number" value={this.state.telefono} onChange={this.onChangeTelefonoUsuario} required/>
+        </Form.Group>
+
         <Form.Group controlId="Email">
           <Form.Label><strong>Email</strong></Form.Label>
-          <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmailUsuario} />
+          <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmailUsuario} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Fecha">
+          <Form.Label><strong>Fecha nacimiento</strong></Form.Label>
+          <Form.Control type="Date" value={this.state.fechanacimiento} onChange={this.onChangeFechaUsuario} required/>
         </Form.Group>
 
         <Form.Group controlId="Password1">
