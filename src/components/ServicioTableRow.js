@@ -11,14 +11,15 @@ export default class ServicioTableRow extends Component {
     }
 
     borrarServicio() {
-        axios.delete('http://localhost:4000/servicios/borrar-servicio/' + this.props.obj._id)
-            .then((res) => {
-                console.log('Servicio borrado con exito!')
-                window.location.reload();
-            }).catch((error) => {
-                console.log(error)
-            })
-        
+        if(window.confirm('Esta seguro de borrar el servicio?')){
+            axios.delete('http://localhost:4000/servicios/borrar-servicio/' + this.props.obj._id)
+                .then((res) => {
+                    console.log('Servicio borrado con exito!')
+                    window.location.reload();
+                }).catch((error) => {
+                    console.log(error)
+                })
+        }
     }
 
     render() {
