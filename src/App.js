@@ -11,6 +11,8 @@ import '@szhsin/react-menu/dist/index.css';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import Sidebar from "./components/sidebar";
+
 import CrearUsuario from "./components/crear-usuario.component";
 import EditarUsuario from "./components/editar-usuario.component";
 import ListaUsuarios from "./components/lista-usuarios.component";
@@ -54,7 +56,8 @@ function App() {
   return (<Router>    
     <div className="App">
       <header className="App-header">
-        <Navbar bg="dark" variant="dark">
+        <Navbar className="color-nav">
+          <Sidebar />
           <Container>
 
             <Navbar.Brand>
@@ -64,57 +67,11 @@ function App() {
             </Navbar.Brand>
 
             <Nav className="justify-content-end">
-              <Nav>
-                <Link to={"/"} className="nav-link">
+              <Nav className="nombre-usuario">
+                
                   {sess.usuario.nombre}
-                </Link>
-                <Menu menuButton={<MenuButton>Planta</MenuButton>}>
-                  <SubMenu label="Servicios">
-                    <MenuItem onClick={() => window.location = "/servicios"}>Lista</MenuItem>
-                    <MenuItem onClick={() => window.location = "/crear-servicio"}>Nuevo</MenuItem>
-                  </SubMenu>
-                  <SubMenu label="Citas">
-                    <MenuItem onClick={() => window.location = "/citas"}>Lista</MenuItem>
-                    <MenuItem onClick={() => window.location = "/crear-cita"}>Nuevo</MenuItem>
-                  </SubMenu>
-                  <MenuItem onClick={() => window.location = "/agenda/"}>Agenda</MenuItem>
-                  <SubMenu label="Reportes">
-                    <MenuItem onClick={() => window.location = "/servicio-mas"}>Servico mas solicitado</MenuItem>
-                    <MenuItem onClick={() => window.location = "/servicio-menos"}>Servicio menos solicitado</MenuItem>
-                    <MenuItem onClick={() => window.location = "/asignaciones-mecanicos"}>Asignaciones mecanicos</MenuItem>
-                    <MenuItem onClick={() => window.location = "/servicios-completados"}>Servicios completados</MenuItem>
-                  </SubMenu>
-
-                </Menu>
-              </Nav>
-
-              <Nav>
-                <Menu menuButton={<MenuButton>Mecanico</MenuButton>}>
-                  
-                  <MenuItem onClick={() => window.location = "/mis-servicios"}>Mis servicios</MenuItem>
-                  <MenuItem onClick={() => window.location = "/mis-citas"}>Mis citas</MenuItem>
-                  
-                </Menu>
-              </Nav>
-              
-              <Nav>
-                <Menu menuButton={<MenuButton>Administracion</MenuButton>}>
-                  <SubMenu label="Usuarios">
-                    <MenuItem onClick={() => window.location = "/usuarios"}>Lista</MenuItem>
-                    <MenuItem onClick={() => window.location = "/crear-usuario"}>Nuevo</MenuItem>
-                  </SubMenu>
-                  <SubMenu label="Servicios">
-                    <MenuItem onClick={() => window.location = "/servicios"}>Lista</MenuItem>
-                    <MenuItem onClick={() => window.location = "/crear-servicio"}>Nuevo</MenuItem>
-                  </SubMenu>
-                  <SubMenu label="Citas">
-                    <MenuItem onClick={() => window.location = "/citas"}>Lista</MenuItem>
-                    <MenuItem onClick={() => window.location = "/crear-cita"}>Nuevo</MenuItem>
-                  </SubMenu>
-                </Menu>
-              </Nav>
-              <Nav>
-                <button onClick={logout}>Cerrar sesion</button>
+                
+                
               </Nav>
             </Nav>
 
