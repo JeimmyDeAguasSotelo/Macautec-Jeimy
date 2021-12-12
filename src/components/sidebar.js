@@ -10,13 +10,13 @@ const logout = () => {
 export default function Sidebar() {
    return(
         <Menu>
-            <a id="home" className="menu-item" href="/">Inicio</a>
-            <a id="home" className="menu-item" href="/citas">Citas</a>
-            <a id="about" className="menu-item" href="/servicios">Servicios</a>
-            <a id="contact" className="menu-item" href="/usuarios">Usuarios</a>
-            <a id="settings" className="menu-item" href="/mecanicos">Mecanicos</a>
-            <a id="settings" className="menu-item" href="/agenda">Agenda</a>
-            <a id="settings" className="menu-item" onClick={logout}>Cerrar Sesion</a>
+            <a id="inicio" className="menu-item" href="/">Inicio</a>
+            <a id="citas" className="menu-item" href="/citas">Citas</a>
+            <a id="servicios" className="menu-item" href="/servicios">Servicios</a>
+            <a id="usuarios" className="menu-item" href="/usuarios">Usuarios</a>
+            <a id="mecanicos" className="menu-item" href="/mecanicos">Mecanicos</a>
+            <a id="agenda" className="menu-item" href="/agenda">Agenda</a>
+            <a id="cerrar" className="menu-item" onClick={logout}>Cerrar Sesion</a>
         </Menu>
    )
 }
