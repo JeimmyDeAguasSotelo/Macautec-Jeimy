@@ -150,6 +150,18 @@ export default class EditarUsuario extends Component {
               />
               <label className="form-check-label">Mecanico</label>
             </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesTipo"
+                id="Administrador"
+                value="Administrador"
+                checked={this.state.tipo === "Administrador"}
+                onChange={this.onChangeTipoUsuario}
+              />
+              <label className="form-check-label">Administrador</label>
+            </div>
           </div>
 
         <Button variant="danger" size="lg" block="block" type="submit">

@@ -11,18 +11,21 @@ export default class UsuarioTableRow extends Component {
     }
 
     borrarUsuario() {
-        axios.delete('http://localhost:4000/usuarios/borrar-usuario/' + this.props.obj._id)
+        if(window.confirm('Esta seguro de borrar el usuario?')){
+            axios.delete('http://localhost:4000/usuarios/borrar-usuario/' + this.props.obj._id)
             .then((res) => {
                 console.log('Usuario borrado con exito!')
                 window.location.reload();
             }).catch((error) => {
                 console.log(error)
             })
-        
+        }
     }
 
     render() {
         const esMecanico = this.props.obj.tipo === 'Mecanico'
+        const esAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo
+        //const esPlanta = this.props.obj.tipo === 'Planta'
 
         return (
             <tr>
@@ -33,14 +36,16 @@ export default class UsuarioTableRow extends Component {
                 <td>{this.props.obj.tipo}</td>
                 <td>
                     {esMecanico ? (
-                    <Link className="btn btn-primary" to={"/agenda/mecanico/" + this.props.obj._id}>
-                        Agenda
-                    </Link>
+                        <Link className="btn btn-primary" to={"/agenda/mecanico/" + this.props.obj._id}>
+                            Agenda
+                        </Link>
                     ):(<div></div>)}
                     <Link className="btn btn-success" to={"/editar-usuario/" + this.props.obj._id}>
                         Editar
                     </Link>
-                    <Button onClick={this.borrarUsuario} className="btn btn-danger" variant="danger">Borrar</Button>
+                    {esAdmin ? (
+                        <Button onClick={this.borrarUsuario} className="btn btn-danger" variant="danger">Borrar</Button>
+                    ):(<div></div>)}
                 </td>
             </tr>
         );

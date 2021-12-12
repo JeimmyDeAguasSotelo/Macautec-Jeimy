@@ -80,6 +80,8 @@ export default class CrearUsuario extends Component {
   onSubmit(e) {
     e.preventDefault()
 
+    var ahora = new Date()
+
     const usuarioObject = {
       nombre: this.state.nombre,
       email: this.state.email,
@@ -87,7 +89,9 @@ export default class CrearUsuario extends Component {
       telefono: this.state.telefono,
       fechanacimiento: this.state.fechanacimiento,
       password: this.state.password,
-      tipo: this.state.tipo
+      tipo: this.state.tipo,
+      creado:ahora,
+      actualizado: ahora 
     };
     console.log(usuarioObject)
 
@@ -177,6 +181,18 @@ export default class CrearUsuario extends Component {
                 onChange={this.onChangeTipoUsuario}
               />
               <label className="form-check-label">Mecanico</label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="OpcionesTipo"
+                id="Administrador"
+                value="Administrador"
+                checked={this.state.tipo === "Administrador"}
+                onChange={this.onChangeTipoUsuario}
+              />
+              <label className="form-check-label">Administrador</label>
             </div>
           </div>
 
