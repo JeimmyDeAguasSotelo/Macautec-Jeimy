@@ -28,6 +28,8 @@ export default class UsuarioTableRow extends Component {
             <tr>
                 <td>{this.props.obj.nombre}</td>
                 <td>{this.props.obj.email}</td>
+                <td>{this.props.obj.telefono}</td>
+                <td>{this.props.obj.cedula}</td>
                 <td>{this.props.obj.tipo}</td>
                 <td>
                     {esMecanico ? (

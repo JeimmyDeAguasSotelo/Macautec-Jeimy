@@ -5,6 +5,9 @@ let citaSchema = new Schema({
   servicio: {
     type: Object
   },
+  mecanico: {
+    type: Object
+  },  
   estado: {
     type: String
   },
@@ -12,6 +15,18 @@ let citaSchema = new Schema({
     type: Date
   },
   hora: {
+    type: Number
+  },
+  nombre: {
+    type: String
+  },
+  cedula: {
+    type: Number
+  },
+  email: {
+    type: String
+  },
+  telefono: {
     type: Number
   },
   placavehiculo: {

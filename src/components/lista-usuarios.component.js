@@ -33,12 +33,14 @@ export default class ListaUsuarios extends Component {
 
 
   render() {
-    return (<div className="table-wrapper">
+    return (<div>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Email</th>
+            <th>Telefono</th>
+            <th>Cedula</th>
             <th>Tipo</th>
             <th>Accion</th>
           </tr>

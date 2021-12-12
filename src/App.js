@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -46,12 +45,6 @@ function App() {
   const session = localStorage.getItem('token');
   const sess = JSON.parse(session)
   //console.log(sess.usuario.nombre)
-
-  const logout = () => {
-    localStorage.clear();
-    // you can also like localStorage.removeItem('Token');
-    window.location.href = "/";
-  }
 
   return (<Router>    
     <div className="App">
