@@ -47,7 +47,7 @@ export default class ListaUsuarios extends Component {
       .then(res => {
         this.setState({
           usuarios: res.data,
-          filtrados: res.data,
+          filtrados: res.data
         });
       })
       .catch((error) => {
