@@ -24,7 +24,7 @@ export default class ServicioTableRow extends Component {
 
     render() {
         //const esPlanta = this.props.obj.tipo === 'Planta'
-        const esMecanico = this.props.obj.tipo === 'Mecanico'
+        //const esMecanico = this.props.obj.tipo === 'Mecanico'
         const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo
         return (
             <tr>

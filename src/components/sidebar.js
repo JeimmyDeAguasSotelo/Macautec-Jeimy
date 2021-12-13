@@ -16,7 +16,7 @@ export default function Sidebar() {
             <a id="usuarios" className="menu-item" href="/usuarios">Usuarios</a>
             <a id="mecanicos" className="menu-item" href="/mecanicos">Mecanicos</a>
             <a id="agenda" className="menu-item" href="/agenda">Agenda</a>
-            <a id="cerrar" className="menu-item" onClick={logout}>Cerrar Sesion</a>
+            <a id="cerrar" className="menu-item" href="/" onClick={logout}>Cerrar Sesion</a>
         </Menu>
    )
 }
