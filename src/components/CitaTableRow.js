@@ -42,7 +42,7 @@ export default class CitaTableRow extends Component {
                 <td>{this.props.obj.hora+":00"}</td>
                 <td>{this.props.obj.placavehiculo}</td>
                 <td>
-                    <Link className="btn btn-primary" to={"/agenda/" + this.props.obj.servicio.nombre}>
+                    <Link className="btn btn-primary" to={"/agenda/servicio/" + this.props.obj.servicio._id}>
                         Agenda
                     </Link>
                     <Link className="btn btn-success" to={"/editar-cita/" + this.props.obj._id}>
