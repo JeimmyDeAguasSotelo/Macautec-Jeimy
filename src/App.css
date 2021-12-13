@@ -8,9 +8,19 @@
   overflow: auto;
 }
 
-.lado-derecho{
-  float: right !important;
+.contenedor {  
+  position: relative;  
 }
+
+.centrado-link {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 /* Individual item */
 .bm-item {
   display: inline-block;

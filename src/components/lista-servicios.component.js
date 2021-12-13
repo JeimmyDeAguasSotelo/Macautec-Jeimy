@@ -4,7 +4,6 @@ import Table from 'react-bootstrap/Table';
 import ServicioTableRow from './ServicioTableRow';
 import Form from 'react-bootstrap/Form'
 import { Link } from 'react-router-dom';
-import { Row, Col } from "react-bootstrap";
 
 export default class ListaServicios extends Component {
 
@@ -66,17 +65,12 @@ export default class ListaServicios extends Component {
   render() {
     return (<div>
       <Table>
-        <Row>
-          <Col>
-            <h1>Servicios</h1>
-          </Col>
-          <Col>
-            <div>
-              <Link className="btn btn-info lado-derecho" to={"/crear-servicio/"}>Nuevo</Link>
-            </div>            
-          </Col>
-        </Row>
+        <thead>
+          <th><h1>Servicios</h1></th>
+          <th className="contenedor"><h1><Link className="btn btn-info lado-derecho centrado-link" to={"/crear-servicio/"}>Nuevo</Link></h1></th>
+        </thead>
       </Table>
+
       <Table striped bordered hover>
             <tbody>
                 <tr>
