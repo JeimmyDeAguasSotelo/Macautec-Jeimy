@@ -36,8 +36,6 @@ var items = [];
 export default class AgendaMecanico extends React.Component {
     constructor(props){
     super(props);
-    
-      console.log(this.props.match.params.id)
 
       axios.get('http://localhost:4000/citas/mecanico/'+this.props.match.params.id)
       .then(res => {
@@ -57,12 +55,12 @@ export default class AgendaMecanico extends React.Component {
           var agendaItem = { 
             _id:guid(), 
             id: data[i]._id, 
-            name: data[i].servicio.nombre + ': '+data[i].servicio.mecanico.label, 
+            name: data[i].servicio.nombre + ': '+data[i].mecanico.nombre, 
             startDateTime: fechaAgendaInicio,
             endDateTime   : fechaAgendaFin,
             classes : filtroColor[data[i].servicio.nombre]
           }
-          console.log(agendaItem)
+          //console.log(agendaItem)
           items.push(agendaItem);
 
           

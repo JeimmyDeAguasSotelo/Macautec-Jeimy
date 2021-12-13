@@ -29,8 +29,8 @@ router.route('/').get((req, res) => {
 })
 
 // Obtener las Citas de un servicio
-router.route('/:servicio').get((req, res) => {
-  citaSchema.find({ 'servicio.nombre' : req.params.servicio },(error, data) => {
+router.route('/servicio/:id').get((req, res) => {
+  citaSchema.find({ 'servicio._id' : req.params.id },(error, data) => {
     if (error) {
       return next(error)
     } else {
@@ -41,7 +41,7 @@ router.route('/:servicio').get((req, res) => {
 
 // Obtener las Citas de un servicio
 router.route('/mecanico/:id').get((req, res) => {
-  citaSchema.find({ 'servicio.mecanico.value' : req.params.id },(error, data) => {
+  citaSchema.find({ 'mecanico._id' : req.params.id },(error, data) => {
     if (error) {
       return next(error)
     } else {

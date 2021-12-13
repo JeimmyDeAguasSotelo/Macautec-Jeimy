@@ -90,7 +90,7 @@ function App() {
                 <Route path="/mis-citas/" component={ListaCitasMecanico} />
                 <Route path="/comentarios/:id" component={CitaMecanicoComentarios} />                
                 <Route path="/agenda/mecanico/:id" component={AgendaMecanico} />
-                <Route path="/agenda/:servicio" component={AgendaServicio} />
+                <Route path="/agenda/servicio/:id" component={AgendaServicio} />
                 <Route path="/agenda/" component={Agenda} />                
               </Switch>
             </div>

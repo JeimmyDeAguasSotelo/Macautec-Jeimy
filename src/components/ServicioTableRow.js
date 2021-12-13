@@ -34,7 +34,7 @@ export default class ServicioTableRow extends Component {
                 <td>{this.props.obj.costo}</td>
                 <td>{this.props.obj.duracionhoras}</td>
                 <td>
-                    <Link className="btn btn-primary" to={"/agenda/" + this.props.obj.nombre}>
+                    <Link className="btn btn-primary" to={"/agenda/servicio/" + this.props.obj._id}>
                         Agenda
                     </Link>
                     <Link className="btn btn-success" to={"/editar-servicio/" + this.props.obj._id}>

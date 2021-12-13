@@ -39,8 +39,7 @@ export default class Agenda extends React.Component {
     
 
       axios.get('http://localhost:4000/citas/')
-      .then(res => {
-        console.log('got here')
+      .then(res => {        
         var data = res.data;         
         var items = []
         
@@ -56,7 +55,7 @@ export default class Agenda extends React.Component {
           var agendaItem = { 
             _id:guid(), 
             id: data[i]._id, 
-            name: data[i].servicio.nombre + ': '+data[i].servicio.mecanico.label, 
+            name: data[i].servicio.nombre + ': '+data[i].mecanico.nombre, 
             startDateTime: fechaAgendaInicio,
             endDateTime   : fechaAgendaFin,
             classes : filtroColor[data[i].servicio.nombre]
@@ -64,7 +63,6 @@ export default class Agenda extends React.Component {
           //console.log(agendaItem)
           items.push(agendaItem);
 
-          
         }        
         this.setState({
           items: items
