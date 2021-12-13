@@ -88,8 +88,8 @@ function App() {
                 <Route path="/servicios/" component={ListaServicio} />
                 <Route path="/crear-cita/" component={CrearCita} />
                 <Route path="/editar-cita/:id" component={EditarCita} />
-                <Route path="/citas/" component={ListaCita} />
-                <Route path="/mis-citas/" component={ListaCitasMecanico} />
+                <Route path="/citas/mecanico/:id" component={ListaCitasMecanico} />
+                <Route path="/citas/" component={ListaCita} />                
                 <Route path="/comentarios/:id" component={CitaMecanicoComentarios} />                
                 <Route path="/agenda/mecanico/:id" component={AgendaMecanico} />
                 <Route path="/agenda/servicio/:id" component={AgendaServicio} />
