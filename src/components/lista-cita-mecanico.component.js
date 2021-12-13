@@ -3,7 +3,6 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import CitaTableRow from './CitaTableRow';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 
 export default class ListaCitas extends Component {
 

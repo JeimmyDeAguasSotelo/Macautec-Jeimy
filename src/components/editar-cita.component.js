@@ -172,7 +172,7 @@ export default class EditarCita extends Component {
     let servsList = servicios.length > 0
       && servicios.map((item, i) => {
       return (
-        <option key={i} value={item._id}>{item.nombre}</option>
+        <option key={i} value={item._id}>{item.nombre+', Horas: '+item.duracionhoras}</option>
       )
     }, this);
 
