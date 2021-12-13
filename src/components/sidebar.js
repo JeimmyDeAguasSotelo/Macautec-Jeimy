@@ -7,11 +7,6 @@ const logout = () => {
   window.location.href = "/";
 } 
 
-const agenda = () => {
-  
-  
-} 
-
 export default function Sidebar() {
   const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo === 'Administrador';
   const usuarioMecanico = JSON.parse(localStorage.getItem('token')).usuario.tipo === 'Mecanico';
