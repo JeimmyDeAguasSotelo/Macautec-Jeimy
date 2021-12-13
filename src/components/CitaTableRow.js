@@ -35,7 +35,9 @@ export default class CitaTableRow extends Component {
                 <td>{this.props.obj.servicio.duracionhoras}</td>
                 <td>{this.props.obj.estado}</td>
                 <td>{this.props.obj.cliente}</td>
+                <td>{this.props.obj.cedula}</td>
                 <td>{this.props.obj.telefono}</td>
+                <td>{this.props.obj.email}</td>
                 <td>{this.props.obj.fecha.split('T')[0]}</td>
                 <td>{this.props.obj.hora+":00"}</td>
                 <td>{this.props.obj.placavehiculo}</td>
