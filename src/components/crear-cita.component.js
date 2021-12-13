@@ -180,7 +180,7 @@ export default class CrearCita extends Component {
             </label>
             <br></br>
               <select value={this.state.servicio._id} onChange={this.onChangeServicio} required>
-                <option value="">Seleccione (Servicio, Estimado)</option>
+                <option>Seleccione (Servicio, Estimado)</option>
                 {servsList}
               </select>
         </div>
@@ -190,7 +190,7 @@ export default class CrearCita extends Component {
             <strong>Mecanico</strong>
             </label>
             <br></br>
-              <select className="form-select" value={this.state.mecanico.value} onChange={this.onChangeMecanicoServicio} required>
+              <select className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio} required>
                 <option>Seleccione</option>
                 {mecsList}
               </select>

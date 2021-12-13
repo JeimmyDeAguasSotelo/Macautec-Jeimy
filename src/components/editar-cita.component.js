@@ -146,8 +146,7 @@ export default class EditarCita extends Component {
       telefono: this.state.telefono,
       cliente: this.state.cliente,
       hora: this.state.hora,
-      placavehiculo: this.state.placavehiculo,
-      creado:ahora,
+      placavehiculo: this.state.placavehiculo,      
       actualizado: ahora
     };
 
@@ -204,7 +203,7 @@ export default class EditarCita extends Component {
             <strong>Mecanico</strong>
             </label>
             <br></br>
-              <select className="form-select" value={this.state.mecanico.value} onChange={this.onChangeMecanicoServicio} required>
+              <select className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio} required>
                 <option>Seleccione</option>
                 {mecsList}
               </select>

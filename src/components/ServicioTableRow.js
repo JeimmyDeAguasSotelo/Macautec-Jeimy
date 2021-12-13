@@ -23,11 +23,13 @@ export default class ServicioTableRow extends Component {
     }
 
     render() {
+        //const esPlanta = this.props.obj.tipo === 'Planta'
+        const esMecanico = this.props.obj.tipo === 'Mecanico'
+        const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo
         return (
             <tr>
                 <td>{this.props.obj.nombre}</td>
-                <td>{this.props.obj.estado}</td>
-                <td>{this.props.obj.mecanico.label}</td>
+                <td>{this.props.obj.estado}</td>                
                 <td>{this.props.obj.descripcion}</td>
                 <td>{this.props.obj.costo}</td>
                 <td>{this.props.obj.duracionhoras}</td>
@@ -38,7 +40,9 @@ export default class ServicioTableRow extends Component {
                     <Link className="btn btn-success" to={"/editar-servicio/" + this.props.obj._id}>
                         Editar
                     </Link>
-                    <Button onClick={this.borrarServicio} className="btn btn-danger" variant="danger">Borrar</Button>
+                    {usuarioAdmin ? (
+                        <Button onClick={this.borrarServicio} className="btn btn-danger" variant="danger">Borrar</Button>
+                    ):(<div></div>)}
                 </td>
             </tr>
         );

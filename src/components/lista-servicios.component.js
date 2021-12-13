@@ -38,8 +38,7 @@ export default class ListaServicios extends Component {
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Estado</th>
-            <th>Mecanico</th>
+            <th>Estado</th>            
             <th>Descripcion</th>
             <th>Costo</th>
             <th>Duracion horas</th>

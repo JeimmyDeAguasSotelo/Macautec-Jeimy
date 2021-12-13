@@ -9,8 +9,7 @@ export default class EditarServicio extends Component {
     super(props)
 
     this.onChangeNombreServicio = this.onChangeNombreServicio.bind(this);
-    this.onChangeEstadoServicio = this.onChangeEstadoServicio.bind(this);
-    this.onChangeMecanicoServicio = this.onChangeMecanicoServicio.bind(this);
+    this.onChangeEstadoServicio = this.onChangeEstadoServicio.bind(this);    
     this.onChangeDescripcionServicio = this.onChangeDescripcionServicio.bind(this);
     this.onChangeCostoServicio = this.onChangeCostoServicio.bind(this);
     this.onChangeDuracionhorasServicio = this.onChangeDuracionhorasServicio.bind(this);
@@ -19,8 +18,7 @@ export default class EditarServicio extends Component {
     // State
     this.state = {
       nombre: '',
-      estado: '',
-      mecanico:{},
+      estado: '',      
       descripcion: '',
       costo: '',
       duracionhoras: '',
@@ -43,20 +41,6 @@ export default class EditarServicio extends Component {
       .catch((error) => {
         console.log(error);
       })
-
-      axios.get('http://localhost:4000/usuarios/mecanicos').then(res => {
-  
-      var data = res.data      
-      var i ;
-      var mecs = []
-      for(i=0; i < data.length; i++){
-        mecs.push({ value: data[i]._id, label: data[i].nombre });
-        
-      }
-      this.setState({
-        mecanicos: mecs
-      });
-    });
   }
 
   onChangeNombreServicio(e) {
@@ -65,12 +49,6 @@ export default class EditarServicio extends Component {
 
   onChangeEstadoServicio(e) {
     this.setState({ estado: e.target.value })
-  }
-
-  onChangeMecanicoServicio(e) {
-    let index = e.nativeEvent.target.selectedIndex;
-    let label = e.nativeEvent.target[index].text;
-    this.setState({ mecanico: {value: e.target.value, label:label} })
   }
 
   onChangeDescripcionServicio(e) {
@@ -87,14 +65,14 @@ export default class EditarServicio extends Component {
 
   onSubmit(e) {
     e.preventDefault()
-
+    var ahora = new Date()
     const servicioObject = {
       nombre: this.state.nombre,
-      estado: this.state.estado,
-      mecanico: this.state.mecanico,
+      estado: this.state.estado,      
       descripcion: this.state.descripcion,
       costo: this.state.costo,
-      duracionhoras: this.state.duracionhoras
+      duracionhoras: this.state.duracionhoras,      
+      actualizado: ahora
     };
 
     axios.put('http://localhost:4000/servicios/editar-servicio/' + this.props.match.params.id, servicioObject)
@@ -112,16 +90,6 @@ export default class EditarServicio extends Component {
 
 
   render() {
-
-    const { mecanicos } = this.state;
-
-    let mecsList = mecanicos.length > 0
-      && mecanicos.map((item, i) => {
-      return (
-        <option key={i} value={item.value}>{item.label}</option>
-      )
-    }, this);
-
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         
@@ -173,18 +141,6 @@ export default class EditarServicio extends Component {
             </div>
           
         </Form.Group>
-
-        <div className="form-group" >
-          <label>
-            <strong>Mecanico</strong>
-            </label>
-            <br></br>
-              <select className="form-select" value={this.state.mecanico.value} onChange={this.onChangeMecanicoServicio} required>
-                <option>Seleccione</option>
-                {mecsList}
-              </select>
-            
-        </div>
 
         <Form.Group controlId="Descripcion">
           <Form.Label><strong>Descripcion</strong></Form.Label>

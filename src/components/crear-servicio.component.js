@@ -10,8 +10,7 @@ export default class CrearServicio extends Component {
 
     // Setting up functions
     this.onChangeNombreServicio = this.onChangeNombreServicio.bind(this);
-    this.onChangeEstadoServicio = this.onChangeEstadoServicio.bind(this);
-    this.onChangeMecanicoServicio = this.onChangeMecanicoServicio.bind(this);
+    this.onChangeEstadoServicio = this.onChangeEstadoServicio.bind(this);    
     this.onChangeDescripcionServicio = this.onChangeDescripcionServicio.bind(this);
     this.onChangeCostoServicio = this.onChangeCostoServicio.bind(this);
     this.onChangeDuracionhorasServicio = this.onChangeDuracionhorasServicio.bind(this);
@@ -20,29 +19,11 @@ export default class CrearServicio extends Component {
     // Setting up state
     this.state = {
       nombre: '',
-      estado: '',
-      mecanico:{},
+      estado: '',      
       descripcion: '',
       costo: '',
-      duracionhoras: '',
-      mecanicos:[]
+      duracionhoras: ''
     }
-    
-  }
-
-  componentDidMount() {
-    axios.get('http://localhost:4000/usuarios/mecanicos').then(res => {
-  
-      var data = res.data;      
-      var mecs = []
-      for(var i=0; i < data.length; i++){
-        mecs.push({ value: data[i]._id, label: data[i].nombre });
-        
-      }
-      this.setState({
-        mecanicos: mecs
-      });
-    });
     
   }
 
@@ -52,12 +33,6 @@ export default class CrearServicio extends Component {
 
   onChangeEstadoServicio(e) {
     this.setState({ estado: e.target.value })
-  }
-
-  onChangeMecanicoServicio(e) {
-    let index = e.nativeEvent.target.selectedIndex;
-    let label = e.nativeEvent.target[index].text;
-    this.setState({ mecanico: {value: e.target.value, label:label} })
   }
 
   onChangeDescripcionServicio(e) {
@@ -74,25 +49,25 @@ export default class CrearServicio extends Component {
 
   onSubmit(e) {
     e.preventDefault()
-
+    var ahora = new Date()
     const ServicioObject = {
       nombre: this.state.nombre,
-      estado: this.state.estado,
-      mecanico: this.state.mecanico,
+      estado: this.state.estado,      
       descripcion: this.state.descripcion,
       costo: this.state.costo,
-      duracionhoras: this.state.duracionhoras
+      duracionhoras: this.state.duracionhoras,
+      creado:ahora,
+      actualizado: ahora
     };
 
     axios.post('http://localhost:4000/servicios/crear-servicio', ServicioObject)
       .then(res => console.log(res.data));
       //this.props.history.push('/servicios');      
       //window.location.reload();
-      window.location.href = "http://localhost:3000/servicios/";
+      //window.location.href = "http://localhost:3000/servicios/";
     this.setState({
       nombre: '',
-      estado: '',
-      mecanico: '',
+      estado: '',      
       descripcion: '',
       costo: '',
       duracionhoras: '',
@@ -102,16 +77,6 @@ export default class CrearServicio extends Component {
   }
 
   render() {
-
-    const { mecanicos } = this.state;
-
-    let mecsList = mecanicos.length > 0
-      && mecanicos.map((item, i) => {
-      return (
-        <option key={i} value={item.value}>{item.label}</option>
-      )
-    }, this);
-
 
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
@@ -166,19 +131,6 @@ export default class CrearServicio extends Component {
           
         </Form.Group>
 
-
-        <div className="form-group" >
-          <label>
-            <strong>Mecanico</strong>
-            </label>
-            <br></br>
-              <select className="form-select" value={this.state.mecanico.value} onChange={this.onChangeMecanicoServicio} required>
-                <option>Seleccione</option>
-                {mecsList}
-              </select>
-            
-        </div>
-
         <Form.Group controlId="Descripcion">
           <Form.Label><strong>Descripcion</strong></Form.Label>
           <Form.Control type="text" value={this.state.descripcion} onChange={this.onChangeDescripcionServicio} required/>
@@ -193,7 +145,6 @@ export default class CrearServicio extends Component {
           <Form.Label><strong>Duracion horas</strong></Form.Label>
           <Form.Control type="number" value={this.state.duracionhoras} onChange={this.onChangeDuracionhorasServicio} required/>
         </Form.Group>
-
 
         <Button variant="danger" size="lg" block="block" type="submit">
           Crear Servicio

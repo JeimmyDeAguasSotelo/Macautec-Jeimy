@@ -8,7 +8,10 @@ let comentarioSchema = new Schema({
   comentario: {
     type: String
   },
-  fecha: {
+  creado: {
+    type: Date
+  },
+  actualizado: {
     type: Date
   }
 }, {
