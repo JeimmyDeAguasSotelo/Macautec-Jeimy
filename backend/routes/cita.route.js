@@ -25,7 +25,7 @@ router.route('/').get((req, res) => {
     } else {
       res.json(data)
     }
-  })
+  }).sort({ actualizado: -1 })
 })
 
 // Obtener las Citas de un servicio
@@ -39,7 +39,7 @@ router.route('/servicio/:id').get((req, res) => {
   })
 })
 
-// Obtener las Citas de un servicio
+// Obtener las Citas de un mecanico
 router.route('/mecanico/:id').get((req, res) => {
   citaSchema.find({ 'mecanico._id' : req.params.id },(error, data) => {
     if (error) {
@@ -48,6 +48,17 @@ router.route('/mecanico/:id').get((req, res) => {
       res.json(data)
     }
   })
+})
+
+// Obtener las Citas agrupadas por fecha
+router.route('/porfecha/').get((req, res) => {
+  citaSchema.find((error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  }).sort({ fecha: -1 })
 })
 
 // Obtener unico Cita

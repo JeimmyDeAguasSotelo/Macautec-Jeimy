@@ -26,7 +26,7 @@ export default class CitaTableRow extends Component {
     render() {
         //const esPlanta = this.props.obj.tipo === 'Planta'
         const esMecanico = this.props.obj.tipo === 'Mecanico'
-        const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo
+        const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo === 'Administrador'
 
         return (
             <tr>
@@ -35,7 +35,7 @@ export default class CitaTableRow extends Component {
                 <td>{this.props.obj.servicio.duracionhoras}</td>
                 <td>{this.props.obj.estado}</td>
                 <td>{this.props.obj.cliente}</td>
-                <td>{this.props.obj.telefono}</td>                
+                <td>{this.props.obj.telefono}</td>
                 <td>{this.props.obj.fecha.split('T')[0]}</td>
                 <td>{this.props.obj.hora+":00"}</td>
                 <td>{this.props.obj.placavehiculo}</td>

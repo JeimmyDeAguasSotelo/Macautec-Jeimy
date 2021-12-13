@@ -25,7 +25,7 @@ router.route('/:id').get((req, res) => {
     } else {
       res.json(data)
     }
-  })
+  }).sort({ actualizado: -1 })
 })
 
 // Borrar Cita

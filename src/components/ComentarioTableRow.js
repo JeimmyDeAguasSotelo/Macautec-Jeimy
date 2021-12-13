@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Moment from 'moment';
 
 export default class ComentarioTableRow extends Component {
 
@@ -20,15 +21,16 @@ export default class ComentarioTableRow extends Component {
         
     }
 
-    render() {
-
-
+    render() {        
+        const usuarioMecanico = JSON.parse(localStorage.getItem('token')).usuario.tipo === 'Mecanico'
         return (
             <tr>
                 <td>{this.props.obj.comentario}</td>                
-                <td>{this.props.obj.fecha.split('T')[0]}</td>                
+                <td>{Moment(this.props.obj.actualizado).format('MM-DD-yyyy HH:mm:ss')}</td>                
                 <td>                   
-                    <Button onClick={this.borrarComentario} className="btn btn-danger" variant="danger">Borrar</Button>
+                    {usuarioMecanico ? (
+                        <Button onClick={this.borrarComentario} className="btn btn-danger" variant="danger">Borrar</Button>
+                    ):(<div></div>)}
                 </td>
             </tr>
         );

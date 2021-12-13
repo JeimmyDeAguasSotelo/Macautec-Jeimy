@@ -19,7 +19,7 @@ export default class ListaCitas extends Component {
       citas: [],
       comentarios:[],
       comentario: '',
-      fecha: '',
+      actualizado: '',
       cita: ''
     };
   }
@@ -33,8 +33,9 @@ export default class ListaCitas extends Component {
     e.preventDefault()
     const ComentarioObject = {
       comentario: this.state.comentario,
-      fecha: new Date(),
-      cita: this.state.cita
+      actualizado: new Date(),
+      cita: this.state.cita,
+      creado: new Date()
     };
     //console.log(ComentarioObject)
 
@@ -42,9 +43,10 @@ export default class ListaCitas extends Component {
       .then(res => console.log(res.data));
       //console.log(ComentarioObject)
       
+      
     this.setState({
       comentario: '',
-      fecha: ''
+      actualizado: ''
     });
 
   }
@@ -90,7 +92,7 @@ export default class ListaCitas extends Component {
 
 
   render() {
-    return (<div className="table-wrapper">
+    return (<div>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -98,10 +100,11 @@ export default class ListaCitas extends Component {
             <th>Mecanico</th>
             <th>Duracion</th>
             <th>Estado</th>
+            <th>Cliente</th>
+            <th>Telefono</th>
             <th>Fecha</th>
             <th>Hora</th>
-            <th>Placa</th>
-            <th>Accion</th>
+            <th>Placa</th>            
           </tr>
         </thead>
         <tbody>

@@ -25,7 +25,7 @@ router.route('/').get((req, res) => {
     } else {
       res.json(data)
     }
-  })
+  }).sort({ actualizado: -1 })
 })
 
 // Obtener todos los Usuarios
