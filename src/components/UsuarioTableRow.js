@@ -23,10 +23,9 @@ export default class UsuarioTableRow extends Component {
     }
 
     render() {
-        const esMecanico = this.props.obj.tipo === 'Mecanico'
-        const esAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo
         //const esPlanta = this.props.obj.tipo === 'Planta'
-
+        const esMecanico = this.props.obj.tipo === 'Mecanico'
+        const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo
         return (
             <tr>
                 <td>{this.props.obj.nombre}</td>
@@ -43,7 +42,7 @@ export default class UsuarioTableRow extends Component {
                     <Link className="btn btn-success" to={"/editar-usuario/" + this.props.obj._id}>
                         Editar
                     </Link>
-                    {esAdmin ? (
+                    {usuarioAdmin ? (
                         <Button onClick={this.borrarUsuario} className="btn btn-danger" variant="danger">Borrar</Button>
                     ):(<div></div>)}
                 </td>

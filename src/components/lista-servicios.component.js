@@ -33,7 +33,7 @@ export default class ListaServicios extends Component {
 
 
   render() {
-    return (<div className="table-wrapper">
+    return (<div>
       <Table striped bordered hover>
         <thead>
           <tr>

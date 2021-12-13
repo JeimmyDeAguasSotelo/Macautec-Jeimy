@@ -17,7 +17,7 @@ let citaSchema = new Schema({
   hora: {
     type: Number
   },
-  nombre: {
+  cliente: {
     type: String
   },
   cedula: {
@@ -34,6 +34,12 @@ let citaSchema = new Schema({
   },
   comentarios: {
     type: Object
+  },
+  creado: {
+    type: Date
+  },
+  actualizado: {
+    type: Date
   }
 }, {
     collection: 'cita'

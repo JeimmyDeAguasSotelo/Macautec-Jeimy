@@ -10,7 +10,12 @@ export default class EditarCita extends Component {
 
     // Setting up functions
     this.onChangeServicio = this.onChangeServicio.bind(this);
+    this.onChangeMecanicoServicio = this.onChangeMecanicoServicio.bind(this);
     this.onChangeEstado = this.onChangeEstado.bind(this);
+    this.onChangeCliente = this.onChangeCliente.bind(this);
+    this.onChangeCedula = this.onChangeCedula.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeTelefono = this.onChangeTelefono.bind(this);
     this.onChangeFecha = this.onChangeFecha.bind(this);
     this.onChangeHora = this.onChangeHora.bind(this);
     this.onChangePlacaVehiculo = this.onChangePlacaVehiculo.bind(this);
@@ -19,11 +24,17 @@ export default class EditarCita extends Component {
     // Setting up state
     this.state = {
       servicio: {},
+      mecanico:{},
+      cliente:'',
+      cedula:'',
+      email:'',
+      telefono:'',
       estado: 'Agendada',
       fecha: '',      
       hora: '',
       placavehiculo: '',
-      servicios:[]     
+      servicios:[],
+      mecanicos:[]
     }
   }
 
@@ -32,10 +43,17 @@ export default class EditarCita extends Component {
       .then(res => {
         this.setState({
           servicio: res.data.servicio,
+          mecanico:res.data.mecanico,
+          cliente:res.data.cliente,
+          cedula:res.data.cedula,
+          email:res.data.email,
+          telefono:res.data.telefono,
           estado:res.data.estado,
           fecha: res.data.fecha.split('T')[0],
           hora: res.data.hora,
-          placavehiculo: res.data.placavehiculo
+          placavehiculo: res.data.placavehiculo,          
+          servicios:this.state.servicios,
+          mecanicos:this.state.mecanicos
         });
       })
       .catch((error) => {
@@ -48,6 +66,13 @@ export default class EditarCita extends Component {
         });
       });
       
+      axios.get('http://localhost:4000/usuarios/mecanicos').then(res => {
+    
+        this.setState({
+          mecanicos: res.data
+        });
+      });
+      
   }
 
   onChangeServicio(e) {
@@ -56,14 +81,42 @@ export default class EditarCita extends Component {
     while(!found && i < this.state.servicios.length){
 
       if(this.state.servicios[i]._id === e.target.value){
-        this.setState({ servicio: this.state.servicios[i]})
-        //console.log(this.state.servicios[i])
+        this.setState({ servicio: this.state.servicios[i]})        
+        found = true
+      }
+      i++
+    }
+  }
+
+  onChangeMecanicoServicio(e) {
+    var found = false
+    var i = 0
+    while(!found && i < this.state.mecanicos.length){
+
+      if(this.state.mecanicos[i]._id === e.target.value){        
+        this.setState({ mecanico: this.state.mecanicos[i]})        
         found = true
       }
       i++
     }
   }
   
+  onChangeCliente(e) {
+    this.setState({ cliente: e.target.value })
+  }
+
+  onChangeCedula(e) {
+    this.setState({ cedula: e.target.value })
+  }
+
+  onChangeEmail(e) {
+    this.setState({ email: e.target.value })
+  }
+
+  onChangeTelefono(e) {
+    this.setState({ telefono: e.target.value })
+  }
+
   onChangeEstado(e) {
     this.setState({ estado: e.target.value })
   }
@@ -82,18 +135,25 @@ export default class EditarCita extends Component {
 
   onSubmit(e) {
     e.preventDefault()
-
-    const citaObject = {
+    var ahora = new Date()
+    const CitaObject = {
       servicio: this.state.servicio,
-      estado:this.state.estado,
+      mecanico: this.state.mecanico,
       fecha: this.state.fecha,
+      estado: this.state.estado,
+      cedula: this.state.cedula,
+      email: this.state.email,
+      telefono: this.state.telefono,
+      cliente: this.state.cliente,
       hora: this.state.hora,
-      placavehiculo: this.state.placavehiculo
+      placavehiculo: this.state.placavehiculo,
+      creado:ahora,
+      actualizado: ahora
     };
 
-    axios.put('http://localhost:4000/citas/editar-cita/' + this.props.match.params.id, citaObject)
+    axios.put('http://localhost:4000/citas/editar-cita/' + this.props.match.params.id, CitaObject)
       .then((res) => {
-        console.log(res.data)
+        //console.log(res.data)
         console.log('Cita editada con exito')
         window.location.reload()
       }).catch((error) => {
@@ -116,6 +176,15 @@ export default class EditarCita extends Component {
       )
     }, this);
 
+    const { mecanicos } = this.state;
+
+    let mecsList = mecanicos.length > 0
+      && mecanicos.map((item, i) => {
+      return (
+        <option key={i} value={item._id}>{item.nombre}</option>
+      )
+    }, this);
+
     return (<div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         
@@ -125,11 +194,43 @@ export default class EditarCita extends Component {
             </label>
             <br></br>
               <select value={this.state.servicio._id} onChange={this.onChangeServicio} required>
-                <option value="">Seleccione</option>
+                <option value="">Seleccione (Servicio, Estimado)</option>
                 {servsList}
               </select>
         </div>
 
+        <div className="form-group" >
+          <label>
+            <strong>Mecanico</strong>
+            </label>
+            <br></br>
+              <select className="form-select" value={this.state.mecanico.value} onChange={this.onChangeMecanicoServicio} required>
+                <option>Seleccione</option>
+                {mecsList}
+              </select>
+            
+        </div>
+        
+        <Form.Group controlId="Cliente">
+          <Form.Label><strong>Cliente</strong></Form.Label>
+          <Form.Control type="text" value={this.state.cliente} onChange={this.onChangeCliente} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Cedula">
+          <Form.Label><strong>Cedula</strong></Form.Label>
+          <Form.Control type="number" value={this.state.cedula} onChange={this.onChangeCedula} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Email">
+          <Form.Label><strong>Email</strong></Form.Label>
+          <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmail} required/>
+        </Form.Group>
+
+        <Form.Group controlId="Telefono">
+          <Form.Label><strong>Telefono</strong></Form.Label>
+          <Form.Control type="number" value={this.state.telefono} onChange={this.onChangeTelefono} required/>
+        </Form.Group>
+        
         <Form.Group controlId="Estado">
           <Form.Label><strong>Estado</strong></Form.Label>
         </Form.Group>

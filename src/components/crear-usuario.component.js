@@ -98,7 +98,7 @@ export default class CrearUsuario extends Component {
     axios.post('http://localhost:4000/usuarios/crear-usuario', usuarioObject)
       .then(res => console.log(res.data));
       //this.props.history.push('/usuarios');
-      window.location.href = "http://localhost:3000/usuarios/";
+      //window.location.href = "http://localhost:3000/usuarios/";
     this.setState({
       nombre: '',
       email: '',

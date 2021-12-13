@@ -33,7 +33,7 @@ export default class ListaCitas extends Component {
 
 
   render() {
-    return (<div className="table-wrapper">
+    return (<div>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -41,6 +41,8 @@ export default class ListaCitas extends Component {
             <th>Mecanico</th>
             <th>Duracion</th>
             <th>Estado</th>
+            <th>Cliente</th>
+            <th>Telefono</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Placa Vehiculo</th>
