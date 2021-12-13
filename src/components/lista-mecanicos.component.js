@@ -67,8 +67,10 @@ export default class ListaUsuarios extends Component {
 
 <Table>
         <thead>
-          <th><h1>Mecanicos</h1></th>
-          <th className="contenedor"><h1><Link className="btn btn-info lado-derecho centrado-link" to={"/crear-mecanico/"}>Nuevo</Link></h1></th>
+          <tr>
+            <th><h1>Mecanicos</h1></th>
+            <th className="contenedor"><h1><Link className="btn btn-info lado-derecho centrado-link" to={"/crear-mecanico/"}>Nuevo</Link></h1></th>
+          </tr>
         </thead>
       </Table>
 

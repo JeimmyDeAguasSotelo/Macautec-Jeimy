@@ -118,7 +118,9 @@ export default class CrearUsuario extends Component {
     return (<div className="form-wrapper">
       <Table>
         <thead>
-          <th><h1>Crear usuario</h1></th>
+          <tr>
+            <th><h1>Crear usuario</h1></th>
+          </tr>
         </thead>
       </Table>
       <Form onSubmit={this.onSubmit}>

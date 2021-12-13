@@ -94,7 +94,9 @@ export default class EditarServicio extends Component {
     return (<div className="form-wrapper">
       <Table>
         <thead>
-          <th><h1>Editar servicio</h1></th>
+          <tr>
+            <th><h1>Editar servicio</h1></th>
+          </tr>
         </thead>
       </Table>
       <Form onSubmit={this.onSubmit}>

@@ -66,8 +66,10 @@ export default class ListaServicios extends Component {
     return (<div>
       <Table>
         <thead>
-          <th><h1>Servicios</h1></th>
-          <th className="contenedor"><h1><Link className="btn btn-info lado-derecho centrado-link" to={"/crear-servicio/"}>Nuevo</Link></h1></th>
+          <tr>
+            <th><h1>Servicios</h1></th>
+            <th className="contenedor"><h1><Link className="btn btn-info lado-derecho centrado-link" to={"/crear-servicio/"}>Nuevo</Link></h1></th>
+          </tr>
         </thead>
       </Table>
 

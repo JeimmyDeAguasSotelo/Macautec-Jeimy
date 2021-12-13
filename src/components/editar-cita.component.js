@@ -188,7 +188,9 @@ export default class EditarCita extends Component {
     return (<div className="form-wrapper">
       <Table>
         <thead>
-          <th><h1>Editar cita</h1></th>
+          <tr>
+            <th><h1>Editar cita</h1></th>
+          </tr>
         </thead>
       </Table>
       <Form onSubmit={this.onSubmit}>

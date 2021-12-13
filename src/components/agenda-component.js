@@ -89,10 +89,12 @@ export default class Agenda extends React.Component {
     }
   
   handleCellSelection(item){
+
     console.log('handleCellSelection',item)
+
   }
   handleItemEdit(item){
-    console.log('handleItemEdit', item)
+    window.location.href = "/editar-cita/"+item.id;
   }
   handleRangeSelection(item){
     console.log('handleRangeSelection', item)
@@ -102,7 +104,9 @@ export default class Agenda extends React.Component {
         <div>
           <Table>
             <thead>
-              <th><h1>Agenda general</h1></th>              
+              <tr>
+                <th><h1>Agenda general</h1></th>
+              </tr>
             </thead>
           </Table>
           <ReactAgenda
