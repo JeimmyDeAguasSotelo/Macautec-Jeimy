@@ -8,6 +8,9 @@
   overflow: auto;
 }
 
+.lado-derecho{
+  float: right !important;
+}
 /* Individual item */
 .bm-item {
   display: inline-block;
