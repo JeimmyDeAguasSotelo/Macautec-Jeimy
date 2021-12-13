@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import CitaTableRow from './CitaTableRow';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
+import { Row, Col } from "react-bootstrap";
 
 export default class ListaCitas extends Component {
 
@@ -75,6 +77,18 @@ export default class ListaCitas extends Component {
 
   render() {
     return (<div>
+      <Table>
+        <Row>
+          <Col>
+            <h1>Citas servicio</h1>
+          </Col>
+          <Col>
+            <div>
+              <Link className="btn btn-info lado-derecho" to={"/crear-cita/"}>Nuevo</Link>
+            </div>            
+          </Col>
+        </Row>
+      </Table>
       <Table striped bordered hover>
             <tbody>
                 <tr>

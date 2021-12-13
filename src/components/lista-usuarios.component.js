@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UsuarioTableRow from './UsuarioTableRow';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 
 export default class ListaUsuarios extends Component {

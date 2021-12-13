@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UsuarioTableRow from './UsuarioTableRow';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
+import { Row, Col } from "react-bootstrap";
 
 export default class ListaUsuarios extends Component {
 
@@ -63,6 +65,20 @@ export default class ListaUsuarios extends Component {
 
   render() {
     return (<div>
+
+      <Table>
+        <Row>
+          <Col>
+            <h1>Mecanicos</h1>
+          </Col>
+          <Col>
+            <div>
+              <Link className="btn btn-info lado-derecho" to={"/crear-usuario/"}>Nuevo</Link>
+            </div>            
+          </Col>
+        </Row>
+      </Table>
+
       <Table striped bordered hover>
             <tbody>
                 <tr>
