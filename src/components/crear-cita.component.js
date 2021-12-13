@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
 
 export default class CrearCita extends Component {
 
@@ -172,6 +173,11 @@ export default class CrearCita extends Component {
     }, this);
 
     return (<div className="form-wrapper">
+      <Table>
+        <thead>
+          <th><h1>Crear cita</h1></th>
+        </thead>
+      </Table>
       <Form onSubmit={this.onSubmit}>
         
         <div className="form-group" >

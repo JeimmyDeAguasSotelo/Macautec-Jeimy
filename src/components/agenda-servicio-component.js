@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactAgenda, guid } from 'react-agenda';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
 
 //https://github.com/revln9/react-agenda AQUI LA GUIA PARA LA AGENDA
 
@@ -43,9 +44,14 @@ export default class AgendaServicio extends React.Component {
         var data = res.data;         
         var items = []
         
+        this.setState({nombre: 'esta vacia'});
+
         for(var i=0; i < data.length; i++){
 
           var dat = data[i].fecha;
+
+          this.setState({nombre: data[i].servicio.nombre});
+
           dat = dat.split('T');
           dat = dat[0].split('-');
 
@@ -75,6 +81,7 @@ export default class AgendaServicio extends React.Component {
 
       this.state = {
         items:items,
+        nombre: '',
         selected:[],
         cellHeight:30,
         showModal:false,
@@ -100,6 +107,11 @@ export default class AgendaServicio extends React.Component {
     render() {
       return (
         <div>
+           <Table>
+            <thead>
+              <th><h1>Agenda {this.state.nombre}</h1></th>              
+            </thead>
+          </Table>
           <ReactAgenda
             minDate={new Date(now.getFullYear(), now.getMonth()-3, now.getDate())}
             maxDate={new Date(now.getFullYear(), now.getMonth()+3, now.getDate())}

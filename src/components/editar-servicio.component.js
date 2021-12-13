@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
 
 export default class EditarServicio extends Component {
 
@@ -91,6 +92,11 @@ export default class EditarServicio extends Component {
 
   render() {
     return (<div className="form-wrapper">
+      <Table>
+        <thead>
+          <th><h1>Editar servicio</h1></th>
+        </thead>
+      </Table>
       <Form onSubmit={this.onSubmit}>
         
       <div className="form-group" >

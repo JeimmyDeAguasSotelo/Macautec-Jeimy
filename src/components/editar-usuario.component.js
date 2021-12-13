@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
 
 export default class EditarUsuario extends Component {
 
@@ -125,6 +126,11 @@ export default class EditarUsuario extends Component {
 
   render() {
     return (<div className="form-wrapper">
+      <Table>
+        <thead>
+          <th><h1>Editar usuario</h1></th>
+        </thead>
+      </Table>
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="Nombre">
           <Form.Label><strong>Nombre</strong></Form.Label>

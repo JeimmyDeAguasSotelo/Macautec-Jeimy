@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactAgenda , guid } from 'react-agenda';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
 
 //https://github.com/revln9/react-agenda AQUI LA GUIA PARA LA AGENDA
 
@@ -99,6 +100,11 @@ export default class Agenda extends React.Component {
     render() {
       return (
         <div>
+          <Table>
+            <thead>
+              <th><h1>Agenda general</h1></th>              
+            </thead>
+          </Table>
           <ReactAgenda
             minDate={new Date(now.getFullYear(), now.getMonth()-3, now.getDate())}
             maxDate={new Date(now.getFullYear(), now.getMonth()+3, now.getDate())}
