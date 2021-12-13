@@ -15,6 +15,8 @@ import Sidebar from "./components/sidebar";
 import CrearUsuario from "./components/crear-usuario.component";
 import EditarUsuario from "./components/editar-usuario.component";
 import ListaUsuarios from "./components/lista-usuarios.component";
+import ListaMecanico from "./components/lista-mecanicos.component";
+
 
 import Agenda from "./components/agenda-component";
 import AgendaServicio from "./components/agenda-servicio-component";
@@ -77,7 +79,7 @@ function App() {
           <Col md={12}>
             <div className="wrapper">
               <Switch>
-                <Route exact path='/' component={CrearUsuario} />
+                <Route exact path='/' component={Agenda} />
                 <Route path="/crear-usuario/" component={CrearUsuario} />
                 <Route path="/editar-usuario/:id" component={EditarUsuario} />
                 <Route path="/usuarios/" component={ListaUsuarios} />
@@ -91,7 +93,8 @@ function App() {
                 <Route path="/comentarios/:id" component={CitaMecanicoComentarios} />                
                 <Route path="/agenda/mecanico/:id" component={AgendaMecanico} />
                 <Route path="/agenda/servicio/:id" component={AgendaServicio} />
-                <Route path="/agenda/" component={Agenda} />                
+                <Route path="/agenda/" component={Agenda} />
+                <Route path="/mecanicos/" component={ListaMecanico} />
               </Switch>
             </div>
           </Col>
