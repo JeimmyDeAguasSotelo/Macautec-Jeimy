@@ -64,7 +64,7 @@ function App() {
             <Nav className="justify-content-end">
               <Nav className="nombre-usuario">
                 
-                  {sess.usuario.nombre}
+                  {sess.usuario.nombre} / {sess.usuario.tipo}
                 
                 
               </Nav>

@@ -109,7 +109,7 @@ export default class AgendaMecanico extends React.Component {
         <div>
           <Table>
             <thead>
-              <th><h1>Agenda {this.state.nombre}</h1></th>              
+              <th><h1>Agenda mecanico: {this.state.nombre}</h1></th>              
             </thead>
           </Table>
           <ReactAgenda
