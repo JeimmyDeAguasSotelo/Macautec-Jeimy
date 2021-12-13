@@ -3,6 +3,8 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import UsuarioTableRow from './UsuarioTableRow';
 import Form from 'react-bootstrap/Form'
+import { Link } from 'react-router-dom';
+import { Card, Row, Col, Button } from "react-bootstrap";
 
 
 export default class ListaUsuarios extends Component {
@@ -64,6 +66,19 @@ export default class ListaUsuarios extends Component {
 
   render() {
     return (<div>
+      <Table>
+        <Row>
+          <Col>
+            <h1>Usuarios</h1>
+          </Col>
+          <Col>
+            <div>
+              <Link className="btn btn-info lado-derecho" to={"/crear-usuario/"}>Nuevo</Link>
+            </div>            
+          </Col>
+        </Row>
+      </Table>
+      
       <Table striped bordered hover>
             <tbody>
                 <tr>
@@ -80,7 +95,7 @@ export default class ListaUsuarios extends Component {
                             <option value="cedula">Cedula</option>                            
                             <option value="tipo">Tipo</option>  
                         </Form.Control>
-                    </td>
+                    </td>                    
                 </tr>
             </tbody>
           </Table>
