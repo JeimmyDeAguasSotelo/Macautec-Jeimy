@@ -17,13 +17,13 @@ export default function Sidebar() {
 
   if(usuarioAdmin){
     return(
-      <Menu>
-        <a id="inicio" className="menu-item" href="/">Inicio</a>
+      <Menu>        
         <a id="servicios" className="menu-item" href="/servicios">Servicios</a>
         <a id="citas" className="menu-item" href="/citas">Citas</a>        
         <a id="usuarios" className="menu-item" href="/usuarios">Usuarios</a>
         <a id="mecanicos" className="menu-item" href="/mecanicos">Mecanicos</a>
         <a id="agenda" className="menu-item" href="/agenda">Agenda</a>
+        <a id="reportes" className="menu-item" href="/reportes">Reportes</a>
         <a id="cerrar" className="menu-item" href="/" onClick={logout}>Cerrar Sesion</a>
       </Menu>
     )
@@ -37,8 +37,7 @@ export default function Sidebar() {
     )
   }else if(usuarioPlanta){
     return(
-      <Menu>
-        <a id="inicio" className="menu-item" href="/">Inicio</a>
+      <Menu>        
         <a id="servicios" className="menu-item" href="/servicios">Servicios</a>        
         <a id="citas" className="menu-item" href="/citas">Citas</a>        
         <a id="agenda" className="menu-item" href="/agenda">Agenda</a>
