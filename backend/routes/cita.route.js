@@ -28,6 +28,61 @@ router.route('/').get((req, res) => {
   }).sort({ actualizado: -1 })
 })
 
+// Obtener todos las Citas
+router.route('/servicio-mas-solicitado').get((req, res) => {
+  citaSchema.aggregate(
+    [
+      { 
+        $group: { _id: '$servicio.nombre', 
+          conteo: { $sum: 1 } 
+        }
+      }
+    ,    
+      {
+        $sort: { conteo: -1 }
+      }
+    ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+router.route('/servicio-menos-solicitado').get((req, res) => {
+  citaSchema.aggregate(
+    [
+      { 
+        $group: { _id: '$servicio.nombre', 
+          conteo: { $sum: 1 } 
+        }
+      }
+    ,    
+      {
+        $sort: { conteo: 1 }
+      }
+    ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+router.route('/servicios-completos').get((req, res) => {
+  citaSchema.aggregate(
+    [ { $match : { estado : "Completo" } }, { $group: { _id: null, conteo: { $sum: 1 } } } ]
+    ,(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // Obtener las Citas de un servicio
 router.route('/servicio/:id').get((req, res) => {
   citaSchema.find({ 'servicio._id' : req.params.id },(error, data) => {

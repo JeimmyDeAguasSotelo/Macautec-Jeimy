@@ -265,7 +265,7 @@ export default class EditarCita extends Component {
                 onChange={this.onChangeEstado}
                 required
               />
-              <label className="form-check-label">Agendada</label>
+              <label className="form-check-label">Agendado</label>
             </div>
             {!usuarioMecanico ? (
             <div className="form-check form-check-inline">
@@ -278,7 +278,7 @@ export default class EditarCita extends Component {
                 checked={this.state.estado === "Cancelada"}
                 onChange={this.onChangeEstado}
               />
-              <label className="form-check-label">Cancelada</label>
+              <label className="form-check-label">Cancelado</label>
             </div>
             ):(<div></div>)}
             {!usuarioPlanta ? (
@@ -292,7 +292,7 @@ export default class EditarCita extends Component {
                 checked={this.state.estado === "Completa"}
                 onChange={this.onChangeEstado}
               />
-              <label className="form-check-label">Completa</label>
+              <label className="form-check-label">Completo</label>
             </div>
             ):(<div></div>)}
           </div>

@@ -17,7 +17,6 @@ import EditarUsuario from "./components/editar-usuario.component";
 import ListaUsuarios from "./components/lista-usuarios.component";
 import ListaMecanico from "./components/lista-mecanicos.component";
 
-
 import Agenda from "./components/agenda-component";
 import AgendaServicio from "./components/agenda-servicio-component";
 import AgendaMecanico from "./components/agenda-mecanico-component";
@@ -31,6 +30,8 @@ import EditarCita from "./components/editar-cita.component";
 import ListaCita from "./components/lista-cita.component";
 import ListaCitasMecanico from "./components/lista-cita-mecanico.component";
 import CitaMecanicoComentarios from "./components/cita-mecanico-comentarios.component";
+
+import Reportes from "./components/reporte.component"
 
 //agregue login session siguendo esta guia
 //https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
@@ -95,6 +96,7 @@ function App() {
                 <Route path="/agenda/servicio/:id" component={AgendaServicio} />
                 <Route path="/agenda/" component={Agenda} />
                 <Route path="/mecanicos/" component={ListaMecanico} />
+                <Route path="/reportes/" component={Reportes} />                
               </Switch>
             </div>
           </Col>

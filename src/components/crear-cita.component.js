@@ -245,7 +245,7 @@ export default class CrearCita extends Component {
                 onChange={this.onChangeEstado}
                 required
               />
-              <label className="form-check-label">Agendada</label>
+              <label className="form-check-label">Agendado</label>
             </div>
             <div className="form-check form-check-inline">
               <input
@@ -257,7 +257,7 @@ export default class CrearCita extends Component {
                 checked={this.state.estado === "Cancelada"}
                 onChange={this.onChangeEstado}
               />
-              <label className="form-check-label">Cancelada</label>
+              <label className="form-check-label">Cancelado</label>
             </div>
             {!usuarioPlanta ? (
             <div className="form-check form-check-inline">
@@ -270,7 +270,7 @@ export default class CrearCita extends Component {
                 checked={this.state.estado === "Completa"}
                 onChange={this.onChangeEstado}
               />
-              <label className="form-check-label">Completa</label>
+              <label className="form-check-label">Completo</label>
             </div>
             ):(<div></div>)}
           </div>
