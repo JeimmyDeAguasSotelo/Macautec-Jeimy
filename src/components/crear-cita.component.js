@@ -203,7 +203,7 @@ export default class CrearCita extends Component {
             <strong>Mecanico</strong>
             </label>
             <br></br>
-              <select className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio} required>
+              <select className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio}>
                 <option>Seleccione</option>
                 {mecsList}
               </select>

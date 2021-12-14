@@ -223,7 +223,7 @@ export default class EditarCita extends Component {
             <strong>Mecanico</strong>
             </label>
             <br></br>
-              <select disabled={usuarioMecanico} className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio} required>
+              <select disabled={usuarioMecanico} className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio}>
                 <option>Seleccione</option>
                 {mecsList}
               </select>
