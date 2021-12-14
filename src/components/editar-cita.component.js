@@ -159,9 +159,15 @@ export default class EditarCita extends Component {
       }).catch((error) => {
         console.log(error)
       })
-
-    // Redirect to Student List 
-    this.props.history.push('/citas')
+      const session = localStorage.getItem('token');
+      const sess = JSON.parse(session)
+  
+      const usuarioMecanico = sess.usuario.tipo === 'Mecanico'      
+      
+      if(usuarioMecanico)      
+        this.props.history.push('/agenda/mecanico/'+sess.usuario._id)
+      else
+        this.props.history.push('/citas')
   }
 
 
@@ -185,6 +191,12 @@ export default class EditarCita extends Component {
       )
     }, this);
 
+    const session = localStorage.getItem('token');
+    const sess = JSON.parse(session)
+
+    const usuarioMecanico = sess.usuario.tipo === 'Mecanico'
+    const usuarioPlanta = sess.usuario.tipo === 'Planta'
+
     return (<div className="form-wrapper">
       <Table>
         <thead>
@@ -200,7 +212,7 @@ export default class EditarCita extends Component {
             <strong>Servicio</strong>
             </label>
             <br></br>
-              <select value={this.state.servicio._id} onChange={this.onChangeServicio} required>
+              <select disabled={usuarioMecanico} value={this.state.servicio._id} onChange={this.onChangeServicio} required>
                 <option value="">Seleccione (Servicio, Estimado)</option>
                 {servsList}
               </select>
@@ -211,7 +223,7 @@ export default class EditarCita extends Component {
             <strong>Mecanico</strong>
             </label>
             <br></br>
-              <select className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio} required>
+              <select disabled={usuarioMecanico} className="form-select" value={this.state.mecanico._id} onChange={this.onChangeMecanicoServicio} required>
                 <option>Seleccione</option>
                 {mecsList}
               </select>
@@ -220,22 +232,22 @@ export default class EditarCita extends Component {
         
         <Form.Group controlId="Cliente">
           <Form.Label><strong>Cliente</strong></Form.Label>
-          <Form.Control type="text" value={this.state.cliente} onChange={this.onChangeCliente} required/>
+          <Form.Control disabled={usuarioMecanico} type="text" value={this.state.cliente} onChange={this.onChangeCliente} required/>
         </Form.Group>
 
         <Form.Group controlId="Cedula">
           <Form.Label><strong>Cedula</strong></Form.Label>
-          <Form.Control type="number" value={this.state.cedula} onChange={this.onChangeCedula} required/>
+          <Form.Control disabled={usuarioMecanico} type="number" value={this.state.cedula} onChange={this.onChangeCedula} required/>
         </Form.Group>
 
         <Form.Group controlId="Email">
           <Form.Label><strong>Email</strong></Form.Label>
-          <Form.Control type="email" value={this.state.email} onChange={this.onChangeEmail} required/>
+          <Form.Control disabled={usuarioMecanico} type="email" value={this.state.email} onChange={this.onChangeEmail} required/>
         </Form.Group>
 
         <Form.Group controlId="Telefono">
           <Form.Label><strong>Telefono</strong></Form.Label>
-          <Form.Control type="number" value={this.state.telefono} onChange={this.onChangeTelefono} required/>
+          <Form.Control disabled={usuarioMecanico} type="number" value={this.state.telefono} onChange={this.onChangeTelefono} required/>
         </Form.Group>
         
         <Form.Group controlId="Estado">
@@ -255,6 +267,7 @@ export default class EditarCita extends Component {
               />
               <label className="form-check-label">Agendada</label>
             </div>
+            {!usuarioMecanico ? (
             <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
@@ -267,6 +280,8 @@ export default class EditarCita extends Component {
               />
               <label className="form-check-label">Cancelada</label>
             </div>
+            ):(<div></div>)}
+            {!usuarioPlanta ? (
             <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
@@ -279,11 +294,12 @@ export default class EditarCita extends Component {
               />
               <label className="form-check-label">Completa</label>
             </div>
+            ):(<div></div>)}
           </div>
 
         <Form.Group controlId="Fecha">
           <Form.Label><strong>Fecha</strong></Form.Label>
-          <Form.Control type="Date" value={this.state.fecha} onChange={this.onChangeFecha} required/>
+          <Form.Control disabled={usuarioMecanico} type="Date" value={this.state.fecha} onChange={this.onChangeFecha} required/>
         </Form.Group>
 
         <div className="form-group" >
@@ -291,7 +307,7 @@ export default class EditarCita extends Component {
             <strong>Hora</strong>
             </label>
             <br></br>
-              <select value={this.state.hora} onChange={this.onChangeHora} required>
+              <select disabled={usuarioMecanico} value={this.state.hora} onChange={this.onChangeHora} required>
                 <option value="8">8:00 am</option>
                 <option value="9">9:00 am</option>
                 <option value="10">10:00 am</option>
@@ -307,7 +323,7 @@ export default class EditarCita extends Component {
 
         <Form.Group controlId="Descripcion">
           <Form.Label><strong>Placa Vehiculo</strong></Form.Label>
-          <Form.Control type="text" value={this.state.placavehiculo} onChange={this.onChangePlacaVehiculo} required/>
+          <Form.Control disabled={usuarioMecanico} type="text" value={this.state.placavehiculo} onChange={this.onChangePlacaVehiculo} required/>
         </Form.Group>
 
         <Button variant="danger" size="lg" block="block" type="submit">

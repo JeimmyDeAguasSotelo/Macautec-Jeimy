@@ -61,7 +61,7 @@ export default class AgendaMecanico extends React.Component {
           var agendaItem = { 
             _id:guid(), 
             id: data[i]._id, 
-            name: data[i].servicio.nombre + ': '+data[i].mecanico.nombre, 
+            name: data[i].servicio.nombre + ': '+data[i].mecanico.nombre +', '+data[i].estado, 
             startDateTime: fechaAgendaInicio,
             endDateTime   : fechaAgendaFin,
             classes : filtroColor[data[i].servicio.nombre]

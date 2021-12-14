@@ -172,6 +172,11 @@ export default class CrearCita extends Component {
       )
     }, this);
 
+    const session = localStorage.getItem('token');
+    const sess = JSON.parse(session)
+    
+    const usuarioPlanta = sess.usuario.tipo === 'Planta'
+
     return (<div className="form-wrapper">
       <Table>
         <thead>
@@ -254,6 +259,7 @@ export default class CrearCita extends Component {
               />
               <label className="form-check-label">Cancelada</label>
             </div>
+            {!usuarioPlanta ? (
             <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
@@ -266,6 +272,7 @@ export default class CrearCita extends Component {
               />
               <label className="form-check-label">Completa</label>
             </div>
+            ):(<div></div>)}
           </div>
 
         <Form.Group controlId="Fecha">
