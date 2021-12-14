@@ -241,7 +241,7 @@ export default class CrearCita extends Component {
                 name="OpcionesEstado"
                 id="Agendada"
                 value="Agendada"
-                checked={this.state.estado === "Agendada"}
+                checked={this.state.estado === "Agendado"}
                 onChange={this.onChangeEstado}
                 required
               />
@@ -254,7 +254,7 @@ export default class CrearCita extends Component {
                 name="OpcionesEstado"
                 id="Cancelada"
                 value="Cancelada"
-                checked={this.state.estado === "Cancelada"}
+                checked={this.state.estado === "Cancelado"}
                 onChange={this.onChangeEstado}
               />
               <label className="form-check-label">Cancelado</label>
@@ -267,7 +267,7 @@ export default class CrearCita extends Component {
                 name="OpcionesEstado"
                 id="Completa"
                 value="Completa"
-                checked={this.state.estado === "Completa"}
+                checked={this.state.estado === "Completo"}
                 onChange={this.onChangeEstado}
               />
               <label className="form-check-label">Completo</label>
