@@ -17,7 +17,6 @@ router.route('/crear-cita').post((req, res, next) => {
   })
 });
 
-// Obtener todos las Citas
 router.route('/').get((req, res) => {
   citaSchema.find((error, data) => {
     if (error) {
@@ -28,7 +27,18 @@ router.route('/').get((req, res) => {
   }).sort({ actualizado: -1 })
 })
 
-// Obtener todos las Citas
+//lista de asignaciones por dia
+router.route('/mecanico-dia').get((req, res) => {
+  citaSchema.find((error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  }).sort({ fecha: -1 })
+})
+
+
 router.route('/servicio-mas-solicitado').get((req, res) => {
   citaSchema.aggregate(
     [
