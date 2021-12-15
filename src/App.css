@@ -36,6 +36,10 @@ h1 {
   color: #19456B !important;
 }
 
+h2 {
+  color: #19456B !important;
+}
+
 /* Change color on hover */
 .bm-item:hover {
   color: white;

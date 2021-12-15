@@ -81,6 +81,27 @@ router.route('/servicio-menos-solicitado').get((req, res) => {
   })
 })
 
+
+router.route('/servicios-mecanico-por-dia').get((req, res) => {
+  citaSchema.aggregate(
+    [       
+        { 
+          $group: { 
+          '_id': { fecha : '$fecha', mecanico : '$mecanico.nombre'},          
+          'citas': { $push: {'estado' : '$estado', 'cliente' : '$cliente', 'telefono' : '$telefono', 'placavehiculo' : '$placavehiculo', 'hora' : '$hora' } }
+          }
+        },
+        { $sort: { _id: -1 } }
+
+    ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 router.route('/servicios-completos').get((req, res) => {
   citaSchema.aggregate(
     [ { $match : { estado : "Completo" } }, { $group: { _id: null, conteo: { $sum: 1 } } } ]
