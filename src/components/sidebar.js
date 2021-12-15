@@ -35,6 +35,7 @@ export default function Sidebar() {
         <a id="cerrar" className="menu-item" href="/" onClick={logout}>Cerrar Sesion</a>
       </Menu>
     )
+    
   }else if(usuarioPlanta){
     return(
       <Menu>        

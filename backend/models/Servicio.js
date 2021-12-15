@@ -27,4 +27,5 @@ let servicioSchema = new Schema({
     collection: 'servicio'
   })
 
+  
 module.exports = mongoose.model('Servicio', servicioSchema)

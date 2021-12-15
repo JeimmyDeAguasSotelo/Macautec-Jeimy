@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 let comentarioSchema = new Schema({
   cita: {
     type: Object

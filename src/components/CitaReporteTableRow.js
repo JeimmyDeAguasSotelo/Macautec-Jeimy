@@ -12,6 +12,7 @@ export default class CitaReporteTableRow extends Component {
 
     render() {
         
+        
         return (
             <Table striped bordered hover>
                 <thead>

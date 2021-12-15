@@ -28,6 +28,7 @@ export default class CitaTableRow extends Component {
         //const esMecanico = this.props.obj.tipo === 'Mecanico'
         const usuarioAdmin = JSON.parse(localStorage.getItem('token')).usuario.tipo === 'Administrador'
 
+        
         return (
             <tr>
                 <td>{this.props.obj.servicio.nombre}</td>

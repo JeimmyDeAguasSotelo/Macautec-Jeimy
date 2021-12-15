@@ -5,6 +5,7 @@ let mongoose = require('mongoose'),
 // Modelo Cita
 let comentarioSchema = require('../models/Comentario');
 
+
 // CREAR comentario
 router.route('/crear-comentario').post((req, res, next) => {
   comentarioSchema.create(req.body, (error, data) => {

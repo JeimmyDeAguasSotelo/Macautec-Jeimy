@@ -51,7 +51,7 @@ router.route('/servicio-mas-solicitado').get((req, res) => {
 
 router.route('/servicio-mas-solicitado/:inicio/:fin').get((req, res) => {
   
-  console.log('req.params.inicio: '+req.params.inicio+', req.params.fin: '+req.params.fin )
+  //console.log('req.params.inicio: '+req.params.inicio+', req.params.fin: '+req.params.fin )
   var fechafinal = new Date(req.params.fin);
   fechafinal.setDate(fechafinal.getDate() + 1);
   var fechainicio = new Date(req.params.inicio)

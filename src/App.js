@@ -49,6 +49,7 @@ function App() {
   const sess = JSON.parse(session)
   //console.log(sess.usuario.nombre)
 
+  
   return (<Router>    
     <div className="App">
       <header className="App-header">

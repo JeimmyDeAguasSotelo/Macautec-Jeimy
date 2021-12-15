@@ -21,6 +21,7 @@ export default class ComentarioTableRow extends Component {
         
     }
 
+    
     render() {        
         const usuarioMecanico = JSON.parse(localStorage.getItem('token')).usuario.tipo === 'Mecanico'
         return (

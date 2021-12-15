@@ -83,6 +83,7 @@ export default class CrearUsuario extends Component {
 
     var ahora = new Date()
 
+    
     const usuarioObject = {
       nombre: this.state.nombre,
       email: this.state.email,

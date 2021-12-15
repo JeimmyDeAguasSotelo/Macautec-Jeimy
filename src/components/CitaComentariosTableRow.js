@@ -5,7 +5,6 @@ export default class CitaComentariosTableRow extends Component {
 
     render() {
 
-
         return (
             <tr>
                 <td>{this.props.obj.servicio.nombre}</td>

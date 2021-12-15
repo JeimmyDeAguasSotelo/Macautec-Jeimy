@@ -22,6 +22,7 @@ export default class ServicioTableRow extends Component {
         }
     }
 
+    
     render() {
         //const esPlanta = this.props.obj.tipo === 'Planta'
         //const esMecanico = this.props.obj.tipo === 'Mecanico'

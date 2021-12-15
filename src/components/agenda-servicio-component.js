@@ -5,6 +5,7 @@ import Table from 'react-bootstrap/Table';
 
 //https://github.com/revln9/react-agenda AQUI LA GUIA PARA LA AGENDA
 
+
 require('../../node_modules/moment/locale/es.js')
 
 var filtroColor = {

@@ -122,6 +122,7 @@ export default class EditarServicio extends Component {
           <Form.Label><strong>Estado</strong></Form.Label>
           <br></br>
         
+        
             <div className="form-check form-check-inline">
               <input
                 className="form-check-input"

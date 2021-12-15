@@ -29,7 +29,6 @@ let usuarioSchema = new Schema({
   actualizado: {
     type: Date
   }
-  
 },
  
 {

@@ -38,7 +38,6 @@ export default class Agenda extends React.Component {
     constructor(props){
     super(props);
     
-
       axios.get('http://localhost:4000/citas/')
       .then(res => {        
         var data = res.data;         

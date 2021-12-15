@@ -67,6 +67,7 @@ export default class ListaCitas extends Component {
       this.ejecutaFiltro(this.state.textobuscar, e.target.value)
   }
 
+  
   DataTable() {
     return this.state.filtrados.map((res, i) => {
       return <CitaTableRow obj={res} key={i} />;

@@ -33,6 +33,7 @@ export default class ListaUsuarios extends Component {
    
   }
 
+  
   onChangeCadenaFiltro(e) {
 
     this.setState({ textobuscar: e.target.value });

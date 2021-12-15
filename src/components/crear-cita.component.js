@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/Table';
 
 export default class CrearCita extends Component {
 
+  
   constructor(props) {
     super(props)
 

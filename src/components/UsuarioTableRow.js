@@ -10,6 +10,7 @@ export default class UsuarioTableRow extends Component {
         this.borrarUsuario = this.borrarUsuario.bind(this);
     }
 
+    
     borrarUsuario() {
         if(window.confirm('Esta seguro de borrar el usuario?')){
             axios.delete('http://localhost:4000/usuarios/borrar-usuario/' + this.props.obj._id)

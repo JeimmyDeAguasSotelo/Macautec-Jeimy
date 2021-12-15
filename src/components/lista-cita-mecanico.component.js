@@ -89,6 +89,7 @@ export default class ListaCitas extends Component {
         </thead>
       </Table>
 
+
       <Table striped bordered hover>
             <tbody>
                 <tr>

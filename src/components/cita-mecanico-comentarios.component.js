@@ -29,6 +29,7 @@ export default class ListaCitas extends Component {
     //console.log(this.state.comentario)
   }
 
+  
   onSubmit2(e) {
     e.preventDefault()
     const ComentarioObject = {

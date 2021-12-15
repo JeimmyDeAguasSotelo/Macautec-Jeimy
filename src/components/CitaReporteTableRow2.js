@@ -4,6 +4,7 @@ export default class CitaReporteTableRow extends Component {
 
     render() {
         
+        
         return (
             <tr>
                 <td>{this.props.obj.estado}</td>

@@ -100,6 +100,7 @@ router.route('/editar-usuario/:id').put((req, res, next) => {
   })
 })
 
+
 // Borrar Usuario
 router.route('/borrar-usuario/:id').delete((req, res, next) => {
   usuarioSchema.findByIdAndRemove(req.params.id, (error, data) => {
