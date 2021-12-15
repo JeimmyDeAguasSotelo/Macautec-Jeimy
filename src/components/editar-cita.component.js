@@ -155,7 +155,7 @@ export default class EditarCita extends Component {
     axios.put('http://localhost:4000/citas/editar-cita/' + this.props.match.params.id, CitaObject)
       .then((res) => {
         //console.log(res.data)
-        console.log('Cita editada con exito')
+        alert('Cita editada con exito')
         window.location.reload()
       }).catch((error) => {
         console.log(error)

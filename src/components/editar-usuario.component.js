@@ -114,7 +114,7 @@ export default class EditarUsuario extends Component {
     axios.put('http://localhost:4000/usuarios/editar-usuario/' + this.props.match.params.id, usuarioObject)
       .then((res) => {
         //console.log(res.data)
-        console.log('Usuario editado con exito')
+        alert('Usuario editado con exito')
         window.location.reload()
       }).catch((error) => {
         console.log(error)

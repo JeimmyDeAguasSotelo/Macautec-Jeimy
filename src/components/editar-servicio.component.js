@@ -78,8 +78,8 @@ export default class EditarServicio extends Component {
 
     axios.put('http://localhost:4000/servicios/editar-servicio/' + this.props.match.params.id, servicioObject)
       .then((res) => {
-        console.log(res.data)
-        console.log('Servicio editado con exito')
+        //console.log(res.data)
+        alert('Servicio editado con exito')
         window.location.reload()
       }).catch((error) => {
         console.log(error)
