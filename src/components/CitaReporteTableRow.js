@@ -17,7 +17,7 @@ export default class CitaReporteTableRow extends Component {
                 <thead>
                     <tr>
                         <th>{this.props.obj._id.fecha.split('T')[0]}</th>
-                        <th colspan="5">{this.props.obj._id.mecanico}</th>
+                        <th colSpan="5">{this.props.obj._id.mecanico}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -239,8 +239,8 @@ export default class CrearCita extends Component {
                 className="form-check-input"
                 type="radio"
                 name="OpcionesEstado"
-                id="Agendada"
-                value="Agendada"
+                id="Agendado"
+                value="Agendado"
                 checked={this.state.estado === "Agendado"}
                 onChange={this.onChangeEstado}
                 required
@@ -252,8 +252,8 @@ export default class CrearCita extends Component {
                 className="form-check-input"
                 type="radio"
                 name="OpcionesEstado"
-                id="Cancelada"
-                value="Cancelada"
+                id="Cancelado"
+                value="Cancelado"
                 checked={this.state.estado === "Cancelado"}
                 onChange={this.onChangeEstado}
               />
@@ -265,8 +265,8 @@ export default class CrearCita extends Component {
                 className="form-check-input"
                 type="radio"
                 name="OpcionesEstado"
-                id="Completa"
-                value="Completa"
+                id="Completo"
+                value="Completo"
                 checked={this.state.estado === "Completo"}
                 onChange={this.onChangeEstado}
               />

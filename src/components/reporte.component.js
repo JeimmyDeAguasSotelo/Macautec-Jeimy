@@ -16,12 +16,12 @@ export default class Reportes extends Component {
     var dentro_un_mes = new Date();
     dentro_un_mes.setMonth(dentro_un_mes.getMonth()+1);
     dentro_un_mes = dentro_un_mes.toISOString().split('T')[0];
-    console.log(dentro_un_mes)
+    console.log('dentro_un_mes: '+dentro_un_mes)
 
     var hace_un_mes = new Date();
     hace_un_mes.setMonth(hace_un_mes.getMonth()-1);
     hace_un_mes = hace_un_mes.toISOString().split('T')[0];
-    console.log(hace_un_mes)
+    console.log('hace_un_mes: '+hace_un_mes)
 
     this.state = {
       fecha_desde: hace_un_mes,
@@ -29,57 +29,65 @@ export default class Reportes extends Component {
       servicio_mas: {},
       servicio_menos: {},
       servicios_completos: 0,      
-      lista_asignaciones: [],
-      filtrados: []
+      lista_asignaciones: []
     };
     
   }
-  
-  onChangeFechadesde(e) {
-    this.setState({ fecha_desde: e.target.value })
-    this.componentDidMount()
-  }
 
-  onChangeFechahasta(e) {
-    this.setState({ fecha_hasta: e.target.value })
-    this.componentDidMount()
-  }
+  obtenerDatosReportes(desde, hasta){
 
-  componentDidMount() {
-    axios.get('http://localhost:4000/citas/servicio-mas-solicitado/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
+    var filtro = desde+'/'+hasta
+
+    //console.log('filtrofecha: '+this.state.fecha_desde+'/'+this.state.fecha_hasta);
+    axios.get('http://localhost:4000/citas/servicio-mas-solicitado/'+filtro)
       .then(res => {
-        this.setState({
-          servicio_mas: {nombre : res.data[0]._id, conteo:res.data[0].conteo }
-        });
+        if(res.data[0] != null)
+          this.setState({
+            servicio_mas: {nombre : res.data[0]._id, conteo:res.data[0].conteo }
+          });
+        else
+          this.setState({
+            servicio_mas: {nombre : 'No hay servicios en el rango', conteo:0 }
+          });
         console.log(this.state.servicio_mas);
       })      
       .catch((error) => {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/citas/servicio-menos-solicitado/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
+    axios.get('http://localhost:4000/citas/servicio-menos-solicitado/'+filtro)
       .then(res => {
-        this.setState({
-          servicio_menos: {nombre : res.data[0]._id, conteo:res.data[0].conteo }
-        });
+        if(res.data[0] != null)
+          this.setState({
+            servicio_menos: {nombre : res.data[0]._id, conteo:res.data[0].conteo }
+          });
+        else
+          this.setState({
+            servicio_menos: {nombre : 'No hay servicios en el rango', conteo:0 }
+          });
         console.log(this.state.servicio_menos);
       })      
       .catch((error) => {
         console.log(error);
       });
 
-      axios.get('http://localhost:4000/citas/servicios-completos/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
+    axios.get('http://localhost:4000/citas/servicios-completos/'+filtro)
       .then(res => {
-        this.setState({
-          servicios_completos: res.data[0].conteo
-        });
+        if(res.data[0] != null)
+          this.setState({
+            servicios_completos: res.data[0].conteo
+          });
+        else
+          this.setState({
+            servicios_completos: 0
+          });
         console.log(this.state.servicios_completos);
       })      
       .catch((error) => {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/citas/servicios-mecanico-por-dia/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
+    axios.get('http://localhost:4000/citas/servicios-mecanico-por-dia/'+filtro)
       .then(res => {
         this.setState({
           lista_asignaciones: res.data
@@ -92,10 +100,29 @@ export default class Reportes extends Component {
 
   }
 
+  onChangeFechadesde(e) {
+    console.log('desde '+e.target.value)
+    this.setState({ fecha_desde: e.target.value })
+    this.obtenerDatosReportes(e.target.value, this.state.fecha_hasta)
+  }
+
+  onChangeFechahasta(e) {
+    console.log('hasta '+e.target.value)
+    this.setState({ fecha_hasta: e.target.value })
+    this.obtenerDatosReportes(this.state.fecha_desde, e.target.value)
+  }
+
+  componentDidMount() {
+    this.obtenerDatosReportes(this.state.fecha_desde, this.state.fecha_hasta)
+  }
+
   DataTable() {
-    return this.state.lista_asignaciones.map((res, i) => {
-      return <CitaReporteTableRow obj={res} key={i} />;
-    });
+    if(this.state.lista_asignaciones.length > 0 )
+      return this.state.lista_asignaciones.map((res, i) => {
+        return <CitaReporteTableRow obj={res} key={i} />;
+      });
+    else
+      return <h4>No existen asignaciones para servicio en este rango de fechas</h4>
   }
 
   render() {
