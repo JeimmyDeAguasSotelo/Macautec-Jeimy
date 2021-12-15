@@ -37,14 +37,16 @@ export default class Reportes extends Component {
   
   onChangeFechadesde(e) {
     this.setState({ fecha_desde: e.target.value })
+    this.componentDidMount()
   }
 
   onChangeFechahasta(e) {
     this.setState({ fecha_hasta: e.target.value })
+    this.componentDidMount()
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/citas/servicio-mas-solicitado')
+    axios.get('http://localhost:4000/citas/servicio-mas-solicitado/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
       .then(res => {
         this.setState({
           servicio_mas: {nombre : res.data[0]._id, conteo:res.data[0].conteo }
@@ -55,7 +57,7 @@ export default class Reportes extends Component {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/citas/servicio-menos-solicitado')
+    axios.get('http://localhost:4000/citas/servicio-menos-solicitado/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
       .then(res => {
         this.setState({
           servicio_menos: {nombre : res.data[0]._id, conteo:res.data[0].conteo }
@@ -66,7 +68,7 @@ export default class Reportes extends Component {
         console.log(error);
       });
 
-      axios.get('http://localhost:4000/citas/servicios-completos')
+      axios.get('http://localhost:4000/citas/servicios-completos/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
       .then(res => {
         this.setState({
           servicios_completos: res.data[0].conteo
@@ -77,11 +79,10 @@ export default class Reportes extends Component {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/citas/servicios-mecanico-por-dia')
+    axios.get('http://localhost:4000/citas/servicios-mecanico-por-dia/'+this.state.fecha_desde+'/'+this.state.fecha_hasta)
       .then(res => {
         this.setState({
-          lista_asignaciones: res.data,
-          filtrados: res.data
+          lista_asignaciones: res.data
         });
         console.log(this.state.lista_asignaciones);
       })      
@@ -92,7 +93,7 @@ export default class Reportes extends Component {
   }
 
   DataTable() {
-    return this.state.filtrados.map((res, i) => {
+    return this.state.lista_asignaciones.map((res, i) => {
       return <CitaReporteTableRow obj={res} key={i} />;
     });
   }

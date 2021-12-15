@@ -27,18 +27,6 @@ router.route('/').get((req, res) => {
   }).sort({ actualizado: -1 })
 })
 
-//lista de asignaciones por dia
-router.route('/mecanico-dia').get((req, res) => {
-  citaSchema.find((error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  }).sort({ fecha: -1 })
-})
-
-
 router.route('/servicio-mas-solicitado').get((req, res) => {
   citaSchema.aggregate(
     [
@@ -50,6 +38,66 @@ router.route('/servicio-mas-solicitado').get((req, res) => {
     ,    
       {
         $sort: { conteo: -1 }
+      }
+    ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+
+router.route('/servicio-mas-solicitado/:inicio/:fin').get((req, res) => {
+  
+  var fechafinal = new Date(req.params.fin);
+  fechafinal.setDate(fechafinal.getDate() + 1);
+
+  citaSchema.aggregate(
+    [
+      { $match: {          
+        fecha: {$gte: new Date(req.params.inicio), $lt: fechafinal}
+        }
+      },
+      { 
+        $group: { _id: '$servicio.nombre', 
+          conteo: { $sum: 1 } 
+        }
+      }
+    ,    
+      {
+        $sort: { conteo: -1 }
+      }
+    ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+
+router.route('/servicio-menos-solicitado/:inicio/:fin').get((req, res) => {
+
+  var fechafinal = new Date(req.params.fin);
+  fechafinal.setDate(fechafinal.getDate() + 1);
+
+  citaSchema.aggregate(
+    [
+        { $match: {          
+          fecha: {$gte: new Date(req.params.inicio), $lt: fechafinal}
+        }
+      },
+      { 
+        $group: { _id: '$servicio.nombre', 
+          conteo: { $sum: 1 } 
+        }
+      }
+    ,    
+      {
+        $sort: { conteo: 1 }
       }
     ],(error, data) => {
     if (error) {
@@ -81,6 +129,32 @@ router.route('/servicio-menos-solicitado').get((req, res) => {
   })
 })
 
+router.route('/servicios-mecanico-por-dia/:inicio/:fin').get((req, res) => {
+  var fechafinal = new Date(req.params.fin);
+  fechafinal.setDate(fechafinal.getDate() + 1);
+  citaSchema.aggregate(
+    [
+        { $match: {          
+            fecha: {$gte: new Date(req.params.inicio), $lt: fechafinal}
+          }
+        },
+        { 
+          $group: { 
+          '_id': { fecha : '$fecha', mecanico : '$mecanico.nombre'},          
+          'citas': { $push: {'estado' : '$estado', 'cliente' : '$cliente', 'telefono' : '$telefono', 'placavehiculo' : '$placavehiculo', 'hora' : '$hora' } }
+          }
+        },
+        { $sort: { _id: -1 } }
+
+    ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 
 router.route('/servicios-mecanico-por-dia').get((req, res) => {
   citaSchema.aggregate(
@@ -94,6 +168,22 @@ router.route('/servicios-mecanico-por-dia').get((req, res) => {
         { $sort: { _id: -1 } }
 
     ],(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+router.route('/servicios-completos/:inicio/:fin').get((req, res) => {
+  
+  var fechafinal = new Date(req.params.fin);
+  fechafinal.setDate(fechafinal.getDate() + 1);
+
+  citaSchema.aggregate(
+    [ { $match : { estado : "Completo", fecha: {$gte: new Date(req.params.inicio), $lt: fechafinal } } }, { $group: { _id: null, conteo: { $sum: 1 } } } ]
+    ,(error, data) => {
     if (error) {
       return next(error)
     } else {
