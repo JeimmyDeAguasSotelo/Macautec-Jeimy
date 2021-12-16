@@ -43,9 +43,16 @@ export default class EditarCita extends Component {
   componentDidMount() {
     axios.get('http://localhost:4000/citas/editar-cita/' + this.props.match.params.id)
       .then(res => {
+        var id = {}
+        if(res.data.mecanico){
+          id = res.data.mecanico          
+        }else{
+          id = {_id:''}
+        }
+
         this.setState({
           servicio: res.data.servicio,
-          mecanico:res.data.mecanico,
+          mecanico:id,
           cliente:res.data.cliente,
           cedula:res.data.cedula,
           email:res.data.email,
