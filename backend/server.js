@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //CORS
-var whitelist = ['https://macautec-jeimy.vercel.app', 'http://localhost:3000']
+var whitelist = ['*','https://macautec-jeimy.vercel.app', 'http://localhost:3000']
 var corsOptions = {
   origin: function (origin, callback) {
     console.log('origin: '+origin)
