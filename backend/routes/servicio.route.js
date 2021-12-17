@@ -8,7 +8,7 @@ let servicioSchema = require('../models/Servicio');
 
 // CREAR Servicio
 router.route('/crear-servicio').post((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   servicioSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error)
@@ -22,7 +22,7 @@ router.route('/crear-servicio').post((req, res, next) => {
 
 // Obtener todos los Servicios
 router.route('/').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   servicioSchema.find((error, data) => {
     if (error) {
       return next(error)
@@ -34,7 +34,7 @@ router.route('/').get((req, res) => {
 
 // Obtener todos los Servicios Activos
 router.route('/activos').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   servicioSchema.find({ estado: 'Disponible' },(error, data) => {
     if (error) {
       return next(error)
@@ -46,7 +46,7 @@ router.route('/activos').get((req, res) => {
 
 // Obtener unico Servicio
 router.route('/editar-servicio/:id').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   servicioSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error)
@@ -59,7 +59,7 @@ router.route('/editar-servicio/:id').get((req, res) => {
 
 // Editar Servicio
 router.route('/editar-servicio/:id').put((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   servicioSchema.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, (error, data) => {
@@ -75,7 +75,7 @@ router.route('/editar-servicio/:id').put((req, res, next) => {
 
 // Borrar Servicio
 router.route('/borrar-servicio/:id').delete((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   servicioSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);

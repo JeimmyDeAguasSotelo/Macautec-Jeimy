@@ -9,7 +9,7 @@ let comentarioSchema = require('../models/Comentario');
 
 // CREAR comentario
 router.route('/crear-comentario').post((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   comentarioSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error)
@@ -22,7 +22,7 @@ router.route('/crear-comentario').post((req, res, next) => {
 
 // Obtener todos los comentarios de una cita por id
 router.route('/:id').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   comentarioSchema.find({'cita._id' : req.params.id },(error, data) => {
     if (error) {
       return next(error)
@@ -34,7 +34,7 @@ router.route('/:id').get((req, res) => {
 
 // Borrar Cita
 router.route('/borrar-comentario/:id').delete((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', ['http://localhost:3000','https://macautec-jeimy.vercel.app'])
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   comentarioSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
