@@ -56,8 +56,7 @@ router.route('/editar-usuario/:id').get((req, res) => {
 })
 
 // Obtener unico Usuario por email y password
-router.route('/login/').post((req, res) => {
-  console.log('https://macautec-jeimy.vercel.app')
+router.route('/login/').post((req, res) => {  
   res.set('Access-Control-Allow-Origin', '*');
   let obj = { email: req.body.email, password: req.body.password };
   //console.log(obj)
