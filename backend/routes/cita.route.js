@@ -8,7 +8,7 @@ let citaSchema = require('../models/Cita');
 
 // CREAR Cita
 router.route('/crear-cita').post((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error)
@@ -20,7 +20,7 @@ router.route('/crear-cita').post((req, res, next) => {
 });
 
 router.route('/').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.find((error, data) => {
     if (error) {
       return next(error)
@@ -31,7 +31,7 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/servicio-mas-solicitado').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.aggregate(
     [
       { 
@@ -54,7 +54,7 @@ router.route('/servicio-mas-solicitado').get((req, res) => {
 
 
 router.route('/servicio-mas-solicitado/:inicio/:fin').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   //console.log('req.params.inicio: '+req.params.inicio+', req.params.fin: '+req.params.fin )
   var fechafinal = new Date(req.params.fin);
   fechafinal.setDate(fechafinal.getDate() + 1);
@@ -86,7 +86,7 @@ router.route('/servicio-mas-solicitado/:inicio/:fin').get((req, res) => {
 
 
 router.route('/servicio-menos-solicitado/:inicio/:fin').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   var fechafinal = new Date(req.params.fin);
   fechafinal.setDate(fechafinal.getDate() + 1);
 
@@ -115,7 +115,7 @@ router.route('/servicio-menos-solicitado/:inicio/:fin').get((req, res) => {
 })
 
 router.route('/servicio-menos-solicitado').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.aggregate(
     [
       { 
@@ -137,7 +137,7 @@ router.route('/servicio-menos-solicitado').get((req, res) => {
 })
 
 router.route('/servicios-mecanico-por-dia/:inicio/:fin').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   var fechafinal = new Date(req.params.fin);
   fechafinal.setDate(fechafinal.getDate() + 1);
   citaSchema.aggregate(
@@ -165,7 +165,7 @@ router.route('/servicios-mecanico-por-dia/:inicio/:fin').get((req, res) => {
 
 
 router.route('/servicios-mecanico-por-dia').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.aggregate(
     [       
         { 
@@ -186,7 +186,7 @@ router.route('/servicios-mecanico-por-dia').get((req, res) => {
 })
 
 router.route('/servicios-completos/:inicio/:fin').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   
   var fechafinal = new Date(req.params.fin);
   fechafinal.setDate(fechafinal.getDate() + 1);
@@ -203,7 +203,7 @@ router.route('/servicios-completos/:inicio/:fin').get((req, res) => {
 })
 
 router.route('/servicios-completos').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.aggregate(
     [ { $match : { estado : "Completo" } }, { $group: { _id: null, conteo: { $sum: 1 } } } ]
     ,(error, data) => {
@@ -217,7 +217,7 @@ router.route('/servicios-completos').get((req, res) => {
 
 // Obtener las Citas de un servicio
 router.route('/servicio/:id').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.find({ 'servicio._id' : req.params.id },(error, data) => {
     if (error) {
       return next(error)
@@ -229,7 +229,7 @@ router.route('/servicio/:id').get((req, res) => {
 
 // Obtener las Citas de un mecanico
 router.route('/mecanico/:id').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.find({ 'mecanico._id' : req.params.id },(error, data) => {
     if (error) {
       return next(error)
@@ -241,7 +241,7 @@ router.route('/mecanico/:id').get((req, res) => {
 
 // Obtener las Citas agrupadas por fecha
 router.route('/porfecha/').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.find((error, data) => {
     if (error) {
       return next(error)
@@ -253,7 +253,7 @@ router.route('/porfecha/').get((req, res) => {
 
 // Obtener unico Cita
 router.route('/editar-cita/:id').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error)
@@ -266,7 +266,7 @@ router.route('/editar-cita/:id').get((req, res) => {
 
 // Editar Cita
 router.route('/editar-cita/:id').put((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, (error, data) => {
@@ -282,7 +282,7 @@ router.route('/editar-cita/:id').put((req, res, next) => {
 
 // Borrar Cita
 router.route('/borrar-cita/:id').delete((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', req.get('host'))
+  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
   citaSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
