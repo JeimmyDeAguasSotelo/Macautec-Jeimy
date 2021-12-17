@@ -8,7 +8,7 @@ let usuarioSchema = require('../models/Usuario');
 
 // CREAR Usuario
 router.route('/crear-usuario').post((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   usuarioSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error)
@@ -21,7 +21,7 @@ router.route('/crear-usuario').post((req, res, next) => {
 
 // Obtener todos los Usuarios
 router.route('/').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   usuarioSchema.find((error, data) => {
     if (error) {
       return next(error)
@@ -33,7 +33,7 @@ router.route('/').get((req, res) => {
 
 // Obtener todos los Usuarios
 router.route('/mecanicos').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   usuarioSchema.find({ tipo: 'Mecanico' },(error, data) => {
     if (error) {
       return next(error)
@@ -45,7 +45,7 @@ router.route('/mecanicos').get((req, res) => {
 
 // Obtener unico Usuario
 router.route('/editar-usuario/:id').get((req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   usuarioSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error)
@@ -57,8 +57,7 @@ router.route('/editar-usuario/:id').get((req, res) => {
 
 // Obtener unico Usuario por email y password
 router.route('/login/').post((req, res) => {
-  console.log(req.get('host'))
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   let obj = { email: req.body.email, password: req.body.password };
   //console.log(obj)
   usuarioSchema.find(obj, (error, data) => {
@@ -83,7 +82,7 @@ router.route('/login/').post((req, res) => {
           usuario: usr,
           login: true
         }
-        res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+        res.header('Access-Control-Allow-Origin', req.get('host'))
         res.json(obj)
         //console.log(obj)
       }
@@ -95,7 +94,7 @@ router.route('/login/').post((req, res) => {
 
 // Editar Usuario
 router.route('/editar-usuario/:id').put((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   usuarioSchema.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, (error, data) => {
@@ -112,7 +111,7 @@ router.route('/editar-usuario/:id').put((req, res, next) => {
 
 // Borrar Usuario
 router.route('/borrar-usuario/:id').delete((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://macautec-jeimy.vercel.app')
+  res.header('Access-Control-Allow-Origin', req.get('host'))
   usuarioSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
