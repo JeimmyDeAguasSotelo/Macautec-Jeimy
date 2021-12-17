@@ -32,7 +32,9 @@ export default class CitaTableRow extends Component {
         return (
             <tr>
                 <td>{this.props.obj.servicio.nombre}</td>
-                <td>{this.props.obj.mecanico.nombre}</td>
+                {this.props.obj.mecanico ? (
+                    <td>{this.props.obj.mecanico.nombre}</td>
+                ):(<td></td>)}
                 <td>{this.props.obj.servicio.duracionhoras}</td>
                 <td>{this.props.obj.estado}</td>
                 <td>{this.props.obj.cliente}</td>

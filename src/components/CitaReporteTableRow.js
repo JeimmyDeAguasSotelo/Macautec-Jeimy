@@ -18,11 +18,12 @@ export default class CitaReporteTableRow extends Component {
                 <thead>
                     <tr>
                         <th>{this.props.obj._id.fecha.split('T')[0]}</th>
-                        <th colSpan="5">{this.props.obj._id.mecanico}</th>
+                        <th colSpan="6">{this.props.obj._id.mecanico}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <th>Servicio</th>
                         <th>Estado</th>
                         <th>Hora</th>
                         <th>Cliente</th>

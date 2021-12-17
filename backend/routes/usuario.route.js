@@ -1,7 +1,8 @@
   let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
-
+  var cors = require('cors')
+  router.use(cors())
 // Modelo usuario
 let usuarioSchema = require('../models/Usuario');
 
