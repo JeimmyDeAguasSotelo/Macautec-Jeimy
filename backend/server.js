@@ -29,7 +29,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(cors());
+
+//CORS
+var whitelist = ['http://localhost:3000', 'https://macautec-jeimy.vercel.app']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions));
+
 app.use('/usuarios', usuarioRoute)
 app.use('/servicios', servicioRoute)
 app.use('/citas', citaRoute)
