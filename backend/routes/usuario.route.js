@@ -57,6 +57,7 @@ router.route('/editar-usuario/:id').get((req, res) => {
 
 // Obtener unico Usuario por email y password
 router.route('/login/').post((req, res) => {
+  console.log(req.get('host'))
   res.header('Access-Control-Allow-Origin', req.get('host'))
   let obj = { email: req.body.email, password: req.body.password };
   //console.log(obj)
