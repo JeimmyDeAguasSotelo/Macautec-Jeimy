@@ -144,7 +144,7 @@ router.route('/servicios-mecanico-por-dia/:inicio/:fin').get((req, res) => {
         { 
           $group: { 
           '_id': { fecha : '$fecha', mecanico : '$mecanico.nombre'},          
-          'citas': { $push: {'estado' : '$estado', 'cliente' : '$cliente', 'telefono' : '$telefono', 'placavehiculo' : '$placavehiculo', 'hora' : '$hora' } }
+          'citas': { $push: {'servicio':'$servicio','estado' : '$estado', 'cliente' : '$cliente', 'telefono' : '$telefono', 'placavehiculo' : '$placavehiculo', 'hora' : '$hora' } }
           }
         },
         { $sort: { _id: -1 } }
