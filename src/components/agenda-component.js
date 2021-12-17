@@ -34,10 +34,13 @@ var colors= {
 var now = new Date();
 var items = [];
 
+var host = window.location.host; 
+console.log(host);
+
 export default class Agenda extends React.Component {
     constructor(props){
     super(props);
-    
+         
       axios.get('http://localhost:4000/citas/')
       .then(res => {        
         var data = res.data;         
@@ -104,7 +107,7 @@ export default class Agenda extends React.Component {
           <Table>
             <thead>
               <tr>
-                <th><h1>Agenda general</h1></th>
+                <th><h1>Agenda general {host}</h1></th>
               </tr>
             </thead>
           </Table>
