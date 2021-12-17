@@ -1,6 +1,5 @@
 let mongoose = require('mongoose');
 let express = require('express');
-let router = express.Router();
 let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
@@ -31,7 +30,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //CORS
-var whitelist = ['http://localhost:3000', 'https://macautec-jeimy.vercel.app']
+var whitelist = ['https://macautec-jeimy.vercel.app', 'http://localhost:3000']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
