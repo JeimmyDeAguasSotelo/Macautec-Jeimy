@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
-let express = require('express');
-let cors = require('cors');
+var express = require('express');
+var cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
 
@@ -23,7 +23,7 @@ mongoose.connect(dbConfig.db, {
   }
 )
 
-const app = express();
+var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
